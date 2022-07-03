@@ -14,14 +14,19 @@ h1{
 .card{
    max-width: 300px;
     min-height: 250px;
-    background: #0d193b;
+    background: #215844;
     padding: 30px;
     box-sizing: border-box;
     color: #FFF;
     margin:20px;
     box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
 }
-
+.card:nth-child(2){
+   background: #1f407a;
+}
+.card:last-child{
+   background: #253653;
+}
 .card-title{
     margin-top: 0;
     font-size: 16px;
@@ -47,11 +52,11 @@ h1{
     letter-spacing: 1.2px;
 }
 .card-btn:hover{
-   color:#02b875;
+   color:#1ddb96;
    background: #FFF;
 }
 .card:nth-child(2) .card-btn:hover{
-   color:#4181ee;
+   color:#135fe2;
    background: #FFF;
 }
 .card:last-child .card-btn:hover{

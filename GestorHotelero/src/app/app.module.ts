@@ -11,7 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HotelsComponent } from './components/admin-APP/hotels/hotels.component';
+import { HotelsComponent } from './components/hotels/hotels.component';
 import { HoteLComponent } from './components/admin-HOTEL/hote-l/hote-l.component';
 import { UsersComponent } from './components/admin-APP/users/users.component';
 

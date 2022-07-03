@@ -1,1 +1,26 @@
-<p>users works!</p>
+<app-navbar></app-navbar>
+
+<div class="text-center mt-2 mb-2">
+    <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addUser">
+      <span class="icon">
+        <i class="fa fa-building" aria-hidden="true"></i>
+      </span>
+      <span class="text">ADD USERS</span>
+    </button>
+  </div>
+  <hr>
+
+<div class="wrapper" *ngIf="users">
+<div class="card" *ngFor="let user of users">
+    <img src="" class="card-img-top" alt="...">
+    <br>
+	<h3 class="card-title">{{user.name}}</h3>
+    <h6 class="card-subtitle mb-2 text-muted">{{user.username}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{user.role}}</h6>
+	<div *ngIf="user.role === 'CLIENT'|| user.role === 'ADMIN-HOTEL'"   class="text-center  ms-3">
+        <button class="btn btn-outline-danger btn-icon-split">Delete</button>
+        <button class="btn btn-outline-success btn-icon-split m-2">Update</button>
+    </div>
+	</div>
+</div>

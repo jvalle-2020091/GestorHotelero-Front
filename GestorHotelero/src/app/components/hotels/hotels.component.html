@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+<h1>Hotels</h1>
+<div class="wrapper" *ngIf="hoteles">
+<div class="card" *ngFor="let hotel of hoteles">
+    <img src="https://www.intermundial.es/blog/wp-content/uploads/2011/09/problemas-hotel.jpg" class="card-img-top" alt="...">
+    <br>
+	<h3 class="card-title">{{hotel.name}}</h3>
+    <h6 class="card-subtitle mb-2 text-muted">Ubication: {{hotel.address}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Phone: {{hotel.phone}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Times Request: {{hotel.timesRequest}}</h6>
+    <div *ngIf="token && identity.role === 'CLIENT'"> <button class="card-btn">Reservation</button> </div>
+		
+    <div  *ngIf="token && identity.role === 'ADMIN-APP'" class="text-center  ms-3">
+      <button class="btn btn-outline-danger btn-icon-split">Delete</button>
+      <button class="btn btn-outline-success btn-icon-split m-2">Update</button>
+  </div>
+	</div>
+</div>
+
+
