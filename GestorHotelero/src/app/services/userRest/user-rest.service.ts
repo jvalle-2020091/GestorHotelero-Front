@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+/*import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';*/
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,8 @@ export class UserRestService {
   httpOptions = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    /*private fireAuth: AngularFireAuth*/
   ) { }
 
   //Funciones públicas
@@ -36,14 +39,20 @@ export class UserRestService {
     return token;
   }
 
-  getIdentity() {
+  getIdentity(){
     let globalIdentity = localStorage.getItem('identity');
     let identity;
-    if (globalIdentity != undefined) {
+    if(globalIdentity != undefined){
       identity = JSON.parse(globalIdentity);
-    } else {
-      identity = '';
+    }else{
+      identity = ''
     }
-    return identity;
+    return identity
   }
+
+  /*logOut(){
+    this.fireAuth.signOut();
+  }
+}*/
+
 }

@@ -16,7 +16,19 @@
             <a *ngIf="token && identity.role === 'ADMIN-HOTEL' "  class="nav-link" routerLink="/myHotel" >My Hotel</a>
           </li>
           <li class="nav-item">
+            <a *ngIf="token && identity.role === 'ADMIN-HOTEL' "  class="nav-link" routerLink="/reservations" >Reservations</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="token && identity.role === 'ADMIN-HOTEL' "  class="nav-link" routerLink="/invoice" >Billing</a>
+          </li>
+          <li class="nav-item">
             <a *ngIf="token && identity.role === 'ADMIN-APP' || identity.role === 'ADMIN-HOTEL' "  class="nav-link" routerLink="/users" >Users</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/report" >Report</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/Statistics" >Statistics</a>
           </li>
           <li class="nav-item">
             <a *ngIf="!token"  class="nav-link" routerLink="/login" >Login</a>
@@ -31,11 +43,10 @@
                 {{name}}
             </a>
         </li>
+
         <li *ngIf="token" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-plus-square-o">
-              </i>
-              Más acciones
+            <img *ngIf="userImage" crossorigin="anonymous" src="{{ uri }}" alt="user image">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
@@ -44,6 +55,7 @@
               </li>
           </div>
       </li>
+      
         </ul>
       </div>
     </div>
