@@ -19,8 +19,111 @@
     <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">{{user.role}}</h6>
 	<div *ngIf="user.role === 'CLIENT'|| user.role === 'ADMIN-HOTEL'"   class="text-center  ms-3">
-        <button class="btn btn-outline-danger btn-icon-split">Delete</button>
-        <button class="btn btn-outline-success btn-icon-split m-2">Update</button>
+        <button (click)="deleteUser(user._id)" class="btn btn-outline-danger btn-icon-split">Delete</button>
+        <button class="btn btn-outline-success btn-icon-split m-2"  (click)="getUser(user._id)"  data-bs-toggle="modal"
+        data-bs-target="#updateUser"  aria-controls="offcanvasExample">Update</button>
     </div>
 	</div>
+</div>
+
+<!--MODAL ADD User-->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-building" aria-hidden="true"></i>
+          &nbsp; Add User:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addUserForm="ngForm">
+          <div class="mb-3">
+            <label for="nameTeam" class="form-label">Name</label>
+            <input [(ngModel)]="user.name" name="name" type="text" class="form-control" id="nameTeam"
+              aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="countryTeam" class="form-label">Username</label>
+            <input [(ngModel)]="user.username" name="username" type="text" class="form-control" id="countryTeam">
+          </div>
+          <div class="mb-3">
+            <label for="descriptionTeam" class="form-label">Password</label>
+            <input [(ngModel)]="user.password" name="password" type="password" class="form-control"
+              id="descriptionTeam">
+          </div>
+         
+          <div class="mb-3">
+            <label for="descriptionTeam" class="form-label">Email</label>
+            <input [(ngModel)]="user.email" name="email" type="text" class="form-control" id="descriptionTeam">
+          </div>
+          <div class="mb-3">
+            <label for="descriptionTeam" class="form-label">Phone</label>
+            <input [(ngModel)]="user.phone" name="phone" type="number" class="form-control" id="descriptionTeam">
+          </div>
+          <label class="form-label">Role</label>
+                        <select [(ngModel)]="user.role" name="role" class="form-select">
+                            <option value="ADMIN-HOTEL">ADMIN-HOTEL</option>
+                            <option value="CLIENT">CLIENT</option>
+                        </select>
+        </form>
+      </div>
+      <div class=" modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Save</button>
+        <button (click)="saveUser(addUserForm)" type="submit" class="btn btn-success"
+          data-bs-dismiss="modal"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save User
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL UPDATE COMPANY -->
+<div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="updateUser" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pencil" aria-hidden="true"></i>
+          Update Enterprise:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="updateUser()" *ngIf="userUpdated">
+          <div class="mb-3">
+            <label for="nameUpdate" class="form-label">Name</label>
+            <input [(ngModel)]="userUpdated.name" name="name" type="text" class="form-control" id="nameUpdate"
+              aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="surnameUpdate" class="form-label">Username</label>
+            <input [(ngModel)]="userUpdated.username" name="username" type="text" class="form-control"
+              id="surnameUpdate">
+          </div>
+          <div class="mb-3">
+            <label for="usernameUpdate" class="form-label">Email</label>
+            <input [(ngModel)]="userUpdated.email" name="email" type="text" class="form-control"
+              id="usernameUpdate">
+          </div>
+          <div class="mb-3">
+            <label for="usernameUpdate" class="form-label">Phone</label>
+            <input [(ngModel)]="userUpdated.phone" name="phone" type="number" class="form-control"
+              id="usernameUpdate">
+          </div>
+          
+          <label class="form-label">Role</label>
+                        <select [(ngModel)]="userUpdated.role" name="role" class="form-select">
+                            <option value="ADMIN-HOTEL">ADMIN-HOTEL</option>
+                            <option value="CLIENT">CLIENT</option>
+                        </select>
+          <div class=" modal-footer justify-content-center">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Update</button>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-floppy-o"
+                aria-hidden="true"></i> Update User
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

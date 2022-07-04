@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 
-<div class="text-center mt-2 mb-2">
-  <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addUser">
+<div *ngIf="token && identity.role === 'ADMIN-APP'" class="text-center mt-2 mb-2">
+  <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addHotel">
     <span class="icon">
       <i class="fa fa-building" aria-hidden="true"></i>
     </span>
     <span class="text">ADD HOTEL</span>
   </button>
 </div>
-<hr>
+<hr *ngIf="token && identity.role === 'ADMIN-APP'">
 
 
 <h1>Hotels</h1>
@@ -20,13 +20,105 @@
     <h6 class="card-subtitle mb-2 text-muted">Ubication: {{hotel.address}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Phone: {{hotel.phone}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Times Request: {{hotel.timesRequest}}</h6>
-    <div *ngIf="token && identity.role === 'CLIENT'"> <button class="card-btn">Reservation</button> </div>
+    <div *ngIf="token && identity.role === 'CLIENT'"> <button  routerLink="/reservation" class="card-btn">Reservation</button> </div>
 		
     <div  *ngIf="token && identity.role === 'ADMIN-APP'" class="text-center  ms-3">
-      <button class="btn btn-outline-danger btn-icon-split">Delete</button>
-      <button class="btn btn-outline-success btn-icon-split m-2">Update</button>
+      <button (click)="deleteHotelByAdmin(hotel._id)" class="btn btn-outline-danger btn-icon-split">Delete</button>
+      <button (click)="getHotel(hotel._id)" class="btn btn-outline-success btn-icon-split m-2" data-bs-toggle="offcanvas" 
+      data-bs-target="#offcanvasExample" 
+      aria-controls="offcanvasExample">Update</button>
   </div>
+  <div  *ngIf="token && identity.role === 'ADMIN-HOTEL'" class="text-center  ms-3">
+    <button class="btn btn-outline-danger btn-icon-split">Services</button>
+    <button class="btn btn-outline-success btn-icon-split m-2">Events</button>
+    <button class="btn btn-outline-primary btn-icon-split m-2">Rooms</button>
+</div>
 	</div>
+</div>
+
+<!-- Modal Save Product -->
+<div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addHotelLabel">New Hotel:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form #addHotelForm="ngForm">
+          <div class="mb-3">
+            <label for="form-label" class="form-label">Name</label>
+            <input [(ngModel)]="hotel.name" name="name" type="text" class="form-control" >
+          </div>
+          <div class="mb-3">
+            <label for="form-label" class="form-label">Address</label>
+            <input [(ngModel)]="hotel.address" name="address" type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input [(ngModel)]="hotel.phone" name="price" type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Times Request</label>
+            <input [(ngModel)]="hotel.timesRequest" name="timesRequest" type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Admin</label>
+            <select [(ngModel)]="hotel.adminHotel" name="adminHotel"class="form-select" aria-label="Default select example">
+              <option disabled value="" selected>Open this select menu</option>
+              <option *ngFor="let user of users" value="{{ user._id }}">{{ user.name }} | {{user.role}}</option>
+            </select>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="saveHotelByAdmin(addHotelForm)" type="submit" class="btn btn-primary" 
+          data-bs-dismiss="modal">Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- off canvas update -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Update Hotel</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+            <form (ngSubmit)="updateHotelByAdmin()" *ngIf="hotelUpdate">
+              <div class="mb-3">
+                <label for="nameUpdate" class="form-label">Name</label>
+                <input [(ngModel)]="hotelUpdate.name" name="name" type="text" class="form-control"aria-describedby="emailHelp" id="nameUpdate">
+              </div>
+              <div class="mb-3">
+                <label for="addressUpdate" class="form-label">Address</label>
+                <input [(ngModel)]="hotelUpdate.address" name="address" type="text" class="form-control" id="addressUpdate">
+              </div>
+              <div class="mb-3">
+                <label for="phoneUpdate" class="form-label">Phone</label>
+                <input [(ngModel)]="hotelUpdate.phone" name="phone" type="number" class="form-control" id="phoneUpdate">
+              </div>
+              <div class="mb-3">
+                <label for="timesRequestUpdate" class="form-label">Times Request</label>
+                <input [(ngModel)]="hotelUpdate.timesRequest" name="timesRequest" type="number" class="form-control" id="timesRequestUpdate">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Admin</label>
+                <select [(ngModel)]="hotelUpdate.adminHotel" name="adminHotelUpdate"class="form-select" aria-label="Default select example" id="adminHotelUpdate">
+                  <option disabled value="" selected>Open this select menu</option>
+                  <option *ngFor="let user of users" value="{{ user._id }}">{{ user.name }}</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-success mt-4" data-bs-dismiss="offcanvas"> Update</button>
+            </form>
+  </div>
 </div>
 
 

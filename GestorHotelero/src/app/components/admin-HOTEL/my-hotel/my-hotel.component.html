@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<body>
+    <br>
+    <div class="card-container">
+        <span class="pro"></span>
+        <img class="round"  crossorigin="anonymous"  alt="hotel image" />
+        <h3>{{hotelGetId.name}}</h3>
+        <p>{{hotelGetId.address}}</p>
+        <p>{{hotelGetId.phone}}</p>
+        <p>{{ hotelGetId.timesRequest}}</p>
+        <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p>
+
+        
+        <div class="buttons">
+            <button class="primary ghost"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
+            aria-controls="offcanvasGetUser" >
+                Update
+            </button>
+            <a href="">  <button class="primary ghost m-2" >
+                Delete
+             </button> </a>
+           
+        </div>
+ 
+       <div class="skills">
+            <h6>Added</h6>
+            <div  class="text-center  ms-3">
+                <button class="btn btn-outline-danger btn-icon-split">Services</button>
+                <button class="btn btn-outline-success btn-icon-split m-2"  [routerLink]="['/event/' + hotelGetId._id]">Events</button>
+                <button class="btn btn-outline-primary btn-icon-split m-2">Rooms</button>
+            </div>
+        </div> 
+    </div>  
+
+
+    <!-- Off canvas update-->
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasGetUser" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasLabel">Update profile</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input name="name" type="text" class="form-control" id="name">
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label"> Username</label>
+          <input name="username" type="text" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> Email</label>
+          <input  name="email" type="text" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Teléfono</label>
+          <input name="phone" type="text" class="form-control">
+        </div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+          <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button> 
+      </form>
+    </div>
+  </div>
+    
+</body>

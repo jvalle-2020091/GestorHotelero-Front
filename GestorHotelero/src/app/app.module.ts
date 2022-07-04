@@ -12,8 +12,13 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
-import { HoteLComponent } from './components/admin-HOTEL/hote-l/hote-l.component';
 import { UsersComponent } from './components/admin-APP/users/users.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ReservationAdminAppComponent } from './components/reservation/reservation-admin-app/reservation-admin-app.component';
+import { ReservationAdminHotelComponent } from './components/reservation/reservation-admin-hotel/reservation-admin-hotel.component';
+import { ReservationUserComponent } from './components/reservation/reservation-user/reservation-user.component';
+import { EventComponent } from './components/admin-HOTEL/event/event.component';
+import { MyHotelComponent } from './components/admin-HOTEL/my-hotel/my-hotel.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +29,13 @@ import { UsersComponent } from './components/admin-APP/users/users.component';
     LoginComponent,
     RegisterComponent,
     HotelsComponent,
-    HoteLComponent,
-    UsersComponent
+    UsersComponent,
+    MyProfileComponent,
+    ReservationAdminAppComponent,
+    ReservationAdminHotelComponent,
+    ReservationUserComponent,
+    EventComponent,
+    MyHotelComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+
+<div class="text-center m-4">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Entry/Outler</th>
+                <th scope="col">Reserved Room</th>
+                <th scope="col">Amount of People</th>
+                <th scope="col">Facture</th>
+                <th scope="col">
+                    Acctions
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-info-circle-fill ms-2" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                    </svg>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <th scope="row">1</th>
+                <td>Geovanni</td>
+                <td>gsactic@gmail.com</td>
+                <td>6-6-2022 / 6-12-2022</td>
+                <td class="text-success">5</td>
+                <td class="text-success">2</td>
+                <td>
+                    <svg  data-bs-toggle="modal" data-bs-target="#exampleModal" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-text"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                        <path
+                            d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                    </svg>
+                </td>
+                <td>
+                    <svg data-bs-toggle="offcanvas" href="#updateTask" aria-controls="updateTask" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        fill="currentColor" class="bi bi-pencil-square me-3" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                    </svg>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- offcanvas update Reservation -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="updateTask" aria-labelledby="offcanvasUpdateLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasUpdateLabel">Update Reservation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <form>
+            <div class="mb-3">
+                <label for="titleInputUpdate" class="form-label">Entry date</label>
+                <input placeholder="e. g. Wash car" name="title" type="datetime-local"
+                    class="form-control" id="titleInputUpdate">
+            </div>
+            <div class="mb-3">
+                <label for="descriptionInputUpdate" class="form-label">Departure date</label>
+                <input placeholder="e. g. Wash car at 15:00" name="description"
+                    type="datetime-local" class="form-control" id="descriptionInputUpdate">
+            </div>
+            <label class="form-label">Event</label>
+            <select name="complete" class="form-select" aria-label="Update task">
+                <option selected>Open this select Event</option>
+                <option value="true">...</option>
+                <option value="false">...</option>
+            </select>
+            <br>
+            <hr>
+            <div class="text-center">
+                <button type="button" class="me-2 btn btn-secondary" data-bs-dismiss="offcanvas">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Updated</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,6 +27,34 @@ export class UserRestService {
       headers: this.httpOptions,
     });
   }
+
+  myProfile() {
+    return this.http.get(environment.baseUrl + 'user/myProfile', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
+
+  updateProfile(params: {}) {
+    return this.http.put(environment.baseUrl + 'user/update', params, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
+
+  deleteProfile() {
+    return this.http.delete(environment.baseUrl + 'user/delete', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
+
   // Solicitar el token
   getToken() {
     let globalToken = localStorage.getItem('token');

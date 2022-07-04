@@ -4,6 +4,7 @@ export class HotelModel{
         public name: string,
         public address: string,
         public phone: string,
-        public timesRequest: number
+        public timesRequest: number,
+        public adminHotel: string
     ){}
 }

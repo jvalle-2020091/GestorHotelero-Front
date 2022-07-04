@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
     <div class="container-fluid">
       <a class="navbar-brand" >Gestor Hotelero</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +47,7 @@
 
         <li *ngIf="token" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img *ngIf="userImage" crossorigin="anonymous" src="{{ uri }}" alt="user image">
+            <img class="round" *ngIf="userImage" crossorigin="anonymous" src="{{ uri }}" alt="user image">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
@@ -60,3 +61,5 @@
       </div>
     </div>
   </nav>
+
+  

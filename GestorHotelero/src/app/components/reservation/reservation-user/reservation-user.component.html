@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+<div class=" m-4">
+    <button type="button" data-bs-toggle="offcanvas" href="#updateTask" aria-controls="updateTask" class="btn btn-dark">
+        <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-calendar-check" viewBox="0 0 16 16">
+            <path
+                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+            <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+        </svg>
+        Reservation</button>
+</div>
+
+
+<!-- offcanvas update Reservation -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="updateTask" aria-labelledby="offcanvasUpdateLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasUpdateLabel">Reservation </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <form>
+
+            <label class="form-label">Room</label>
+            <select name="complete" class="form-select" aria-label="Update task">
+                <option selected>Open this select Event</option>
+                <option value="true">...</option>
+                <option value="false">...</option>
+            </select>
+
+            <div class="mb-3">
+                <label for="titleInputUpdate" class="form-label">Entry date</label>
+                <input placeholder="e. g. Wash car" name="title" type="datetime-local" class="form-control"
+                    id="titleInputUpdate">
+            </div>
+            <div class="mb-3">
+                <label for="descriptionInputUpdate" class="form-label">Departure date</label>
+                <input placeholder="e. g. Wash car at 15:00" name="description" type="datetime-local"
+                    class="form-control" id="descriptionInputUpdate">
+            </div>
+            <label class="form-label">Event</label>
+            <select name="complete" class="form-select" aria-label="Update task">
+                <option selected>Open this select Event</option>
+                <option value="true">...</option>
+                <option value="false">...</option>
+            </select>
+            <br>
+            <hr>
+            <div class="text-center">
+                <button type="button" class="me-2 btn btn-secondary" data-bs-dismiss="offcanvas">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Reserve</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+            
+            
