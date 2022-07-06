@@ -29,6 +29,7 @@ export class MyProfileComponent implements OnInit {
       this.token = this.userRest.getToken();
     }
     userGetId: any;
+    user: any;
 
 
   ngOnInit(): void {
@@ -67,10 +68,23 @@ export class MyProfileComponent implements OnInit {
     });
   }
 
+  getUser() {
+    this.userRest.myProfile().subscribe({
+      next: (res: any) => {
+        this.user = res.user;
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'warning',
+          title: err.error.message || err.error,
+        });
+      },
+    });
+  }
+
   updateProfile() {
-    this.userGetId.password = undefined;
-    this.userGetId.role = undefined;
-    this.userRest.updateProfile(this.userGetId).subscribe({
+   
+    this.userRest.updateProfile(this.user).subscribe({
       next: (res: any) => {
         Swal.fire({
           icon: 'success',

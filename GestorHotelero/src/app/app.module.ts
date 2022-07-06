@@ -19,6 +19,10 @@ import { ReservationAdminHotelComponent } from './components/reservation/reserva
 import { ReservationUserComponent } from './components/reservation/reservation-user/reservation-user.component';
 import { EventComponent } from './components/admin-HOTEL/event/event.component';
 import { MyHotelComponent } from './components/admin-HOTEL/my-hotel/my-hotel.component';
+import { ServicesComponent } from './components/admin-HOTEL/services/services.component';
+import { RoomsComponent } from './components/admin-HOTEL/rooms/rooms.component';
+import { HotelComponent } from './components/admin-HOTEL/hotel/hotel.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +39,10 @@ import { MyHotelComponent } from './components/admin-HOTEL/my-hotel/my-hotel.com
     ReservationAdminHotelComponent,
     ReservationUserComponent,
     EventComponent,
-    MyHotelComponent
+    MyHotelComponent,
+    ServicesComponent,
+    RoomsComponent,
+    HotelComponent
   ],
   imports: [
     BrowserModule,

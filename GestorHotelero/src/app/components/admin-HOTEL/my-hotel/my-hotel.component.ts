@@ -4,6 +4,8 @@ import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { HotelModel } from 'src/app/models/hotel.model';
+
 
 @Component({
   selector: 'app-my-hotel',
@@ -16,6 +18,10 @@ export class MyHotelComponent implements OnInit {
   role:any;
   username:any;
   name:any;
+  hotelId: any;
+  hotelUpdate: any;
+  hoteles: any;
+  hotel: HotelModel;
 
   uri:any;
   userImage:any;
@@ -26,6 +32,7 @@ export class MyHotelComponent implements OnInit {
     private router: Router
   ) { 
     this.token = this.userRest.getToken();
+    this.hotel = new HotelModel('', '', '', '',  0, '');
   }
 
   hotelGetId: any;
@@ -36,6 +43,7 @@ export class MyHotelComponent implements OnInit {
     this.identity = this.userRest.getIdentity();
     this.role = this.userRest.getIdentity().role;
     this.name = this.userRest.getIdentity().name;
+
     let outService = localStorage.getItem('outService');
     if(this.token != ''){
       this.userImage = this.userRest.getIdentity().image;
@@ -63,6 +71,65 @@ export class MyHotelComponent implements OnInit {
         });
       },
     });
+  }
+
+  saveHotel(){
+
+    this.hotelRest.saveHotel(this.hotel).subscribe({
+      next: (res:any) =>{
+        console.log(res);
+        
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          position: 'center',
+          showConfirmButton: false,
+          timer: 2000
+        });
+        this.myHotel();
+       
+      },
+      error: (err: any) => {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+  
+      },
+    })
+  }
+
+  updateHotel(){
+    this.hotelRest.updateHotel( this.hotelGetId._id, this.hotelGetId).subscribe({
+      next: (res:any)=> {
+        Swal.fire ({ icon: 'success', title: res.message,});
+        console.log(this.hotelId);
+        this.myHotel();
+      },
+      error: (err)=> alert(err.error.message || err.error)
+    })
+  }
+
+  deleteHotel(id:string){
+    this.hotelRest.deleteHotel(id).subscribe({
+      next: (res:any)=> {
+        Swal.fire({
+          title: res.message + ' ' + res.hotelDeleted.name,
+          icon: 'success',
+          position: 'center',
+          showConfirmButton: false,
+          timer: 2000
+        });
+        this.myHotel();
+      },
+      error: (err)=> Swal.fire({
+        title: err.error.message,
+        icon: 'error',
+        position: 'center',
+        timer: 3000
+      })
+    })
   }
 
 }

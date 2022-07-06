@@ -22,7 +22,7 @@
         <h6 class="card-subtitle mb-2 text-muted">Description: {{event.description}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">Date: {{event.dateEvent}}</h6>
       <div  class="text-center  ms-3">
-        <button (click)="getEvent(event._id)" class="btn btn-success m-3" data-bs-toggle="modal"
+        <button (click)="getEvent(event._id)"  data-bs-toggle="modal"
           data-bs-target="#updateEvent" class="btn btn-warning m-2" aria-controls="offcanvasExample">
           <i class="fa fa-pencil" aria-hidden="true">
           </i> Update
@@ -110,9 +110,9 @@
           </div>
           <div class=" modal-footer justify-content-center">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-              <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Update</button>
+              <i class="fa fa-times-circle" aria-hidden="true"></i> CANCEL</button>
             <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-floppy-o"
-                aria-hidden="true"></i> Update Event
+                aria-hidden="true"></i> UPDATE
             </button>
           </div>
         </form>

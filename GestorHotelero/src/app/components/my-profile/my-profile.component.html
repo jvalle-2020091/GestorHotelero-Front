@@ -11,28 +11,14 @@
         <p>{{ userGetId.phone}}</p>
         
         <div class="buttons">
-            <button class="primary ghost"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
+            <button (click)="getUser()"  class="primary ghost"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
             aria-controls="offcanvasGetUser" >
                 Update
             </button>
-            <a href="">  <button class="primary ghost m-2" (click)="deleteProfile()">
+            <a  (click)="deleteProfile()">  <button class="primary ghost m-2">
                 Delete
-             </button> </a>
-           
+             </button> </a>          
         </div>
-
-       <!-- <div class="skills">
-            <h6>Skills</h6>
-            <ul>
-                <li>UI / UX</li>
-                <li>Front End Development</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Node</li>
-            </ul>
-        </div> -->
     </div>  
 
 
@@ -44,26 +30,28 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <form (ngSubmit)="updateProfile()" *ngIf="userGetId">
+      <form (ngSubmit)="updateProfile()" *ngIf="user">
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input [(ngModel)]="userGetId.name" name="name" type="text" class="form-control" id="name">
+          <input [(ngModel)]="user.name" name="name" type="text" class="form-control" id="name">
         </div>
         
         <div class="mb-3">
           <label class="form-label"> Username</label>
-          <input [(ngModel)]="userGetId.username" name="username" type="text" class="form-control" id="username">
+          <input [(ngModel)]="user.username" name="username" type="text" class="form-control" id="username">
         </div>
         <div class="mb-3">
           <label class="form-label"> Email</label>
-          <input [(ngModel)]="userGetId.email" name="email" type="text" class="form-control" id="email">
+          <input [(ngModel)]="user.email" name="email" type="text" class="form-control" id="email">
         </div>
         <div class="mb-3">
           <label class="form-label">Teléfono</label>
-          <input [(ngModel)]="userGetId.phone" name="phone" type="text" class="form-control">
+          <input [(ngModel)]="user.phone" name="phone" type="text" class="form-control">
         </div>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-          <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">CANCEL</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">UPDATE</button>
+      </div>
       </form>
     </div>
   </div>

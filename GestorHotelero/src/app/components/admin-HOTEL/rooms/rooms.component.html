@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+
+<div class="text-center mt-2 mb-2">
+    <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addEvent">
+      <span class="icon">
+        <i class="fa fa-building" aria-hidden="true"></i>
+      </span>
+      <span class="text">Add Room</span>
+    </button>
+  </div>
+  <hr>
+
+    <div class="row background">
+        <div *ngFor="let room of rooms  " class="card m-4 text-center" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ room.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">description: {{ room.description }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">price: {{ room.price }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">available: {{ room.available }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">date available: {{ room.dateAvalable }}</h6>
+                <button 
+                    (click)="getRoom(room._id)" class="btn btn-warning m-2" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    Update
+                </button>
+                <button 
+                    (click)="deleteRoom(room._id)" class="btn btn-danger ">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL ADD -->
+    <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-building" aria-hidden="true"></i>
+              &nbsp; Add Room</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #addRoomForm="ngForm">
+              <div class="mb-3">
+                <label for="nameTeam" class="form-label">Name</label>
+                <input [(ngModel)]="room.name" name="name" type="text" class="form-control" id="nameTeam"
+                  aria-describedby="DateEventHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="nameTeam" class="form-label">Description</label>
+                <input [(ngModel)]="room.description" name="name" type="text" class="form-control" id="nameTeam"
+                  aria-describedby="DateEventHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="nameTeam" class="form-label">Price</label>
+                <input [(ngModel)]="room.price" name="name" type="text" class="form-control" id="nameTeam"
+                  aria-describedby="DateEventHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="nameTeam" class="form-label">Date Available</label>
+                <input [(ngModel)]="room.dateAvalable" name="name" type="text" class="form-control" id="nameTeam"
+                  aria-describedby="DateEventHelp">
+              </div>
+             
+            </form>
+          </div>
+          <div class=" modal-footer justify-content-center">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Save</button>
+              <button (click)="saveRoom(addRoomForm)" type="submit" class="btn btn-success"
+              data-bs-dismiss="modal"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save Event
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--  Update Room-->
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasUpdateRoom">Update Room</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <form (ngSubmit)="updateRoom()" *ngIf="roomGetId">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input [(ngModel)]="roomGetId.name" name="name" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input [(ngModel)]="roomGetId.description" name="description" type="text" class="form-control"
+                        id="description">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input [(ngModel)]="roomGetId.price" name="price" type="number" class="form-control" id="price">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Available</label>
+                    <input [(ngModel)]="roomGetId.available" name="available" type="text" class="form-control" id="available">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Date Available</label>
+                    <input [(ngModel)]="roomGetId.dateAvalable" name="dateAvailable" type="text" class="form-control" id="dateAvailable">
+                </div>
+                <button type="submit" class="btn btn-success mt-4" data-bs-dismiss="offcanvas"> Update</button>
+            </form>
+        </div>
+    </div>

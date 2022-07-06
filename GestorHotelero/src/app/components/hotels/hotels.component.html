@@ -28,15 +28,10 @@
       data-bs-target="#offcanvasExample" 
       aria-controls="offcanvasExample">Update</button>
   </div>
-  <div  *ngIf="token && identity.role === 'ADMIN-HOTEL'" class="text-center  ms-3">
-    <button class="btn btn-outline-danger btn-icon-split">Services</button>
-    <button class="btn btn-outline-success btn-icon-split m-2">Events</button>
-    <button class="btn btn-outline-primary btn-icon-split m-2">Rooms</button>
-</div>
 	</div>
 </div>
 
-<!-- Modal Save Product -->
+<!-- Modal Save hotel -->
 <div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -57,7 +52,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Phone</label>
-            <input [(ngModel)]="hotel.phone" name="price" type="text" class="form-control">
+            <input [(ngModel)]="hotel.phone" name="phone" type="text" class="form-control">
           </div>
           <div class="mb-3">
             <label class="form-label">Times Request</label>

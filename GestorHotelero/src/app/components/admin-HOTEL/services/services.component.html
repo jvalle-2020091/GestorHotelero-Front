@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+
+<div class="text-center m-3">
+    <button type="button" class="btn btn-outline-success m-4" 
+      data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo Servicio</button>
+  </div>
+  
+
+  <hr>
+<div class="row background">
+  <div *ngFor="let service of services " class="card m-4 text-center" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ service.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Descripcion: {{ service.description }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Q.{{ service.price }}</h6>
+      <button (click)="getService(service._id)" class="btn btn-warning m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        Update
+      </button>
+      <button (click)="deleteService(service._id)" class="btn btn-danger ">Delete</button>
+    </div>
+  </div>
+</div>
+
+ <!-- off canvas update -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pencil" aria-hidden="true"></i>
+      Update Event</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form (ngSubmit)="updateService()" *ngIf="serviceGetId">
+      <div class="mb-3">
+        <label for="nameTeam" class="form-label">Name</label>
+        <input [(ngModel)]="serviceGetId.name" name="name" type="text" class="form-control" id="nameTeam"
+          aria-describedby="DateEventHelp">
+      </div>
+      <div class="mb-3">
+        <label for="descriptionTeam" class="form-label">Description</label>
+        <input [(ngModel)]="serviceGetId.description" name="description" type="text" class="form-control"
+          id="descriptionTeam">
+      </div>
+      
+      <div class=" modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger"  data-bs-dismiss="offcanvas">
+          <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Update</button>
+        <button type="submit" class="btn btn-success" data-bs-dismiss="offcanvas"><i class="fa fa-floppy-o"
+            aria-hidden="true"></i> Update Event
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--  Agregar Servicio-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo servicio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form  #addServiceForm="ngForm">
+            <div class="mb-3">
+              <div>
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input [(ngModel)]="service.name" name= "name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+              <div>
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+                <input [(ngModel)]="service.description " name= "provider" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+              <div>
+                <label for="exampleInputEmail1" class="form-label">Price</label>
+                <input [(ngModel)]="service.price " name= "stock" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+              
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button (click)="addService(addServiceForm)" type="submit" class="btn btn-primary" 
+            data-bs-dismiss="modal">Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+   
+  

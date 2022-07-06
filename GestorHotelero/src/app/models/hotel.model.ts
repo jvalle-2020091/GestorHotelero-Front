@@ -1,10 +1,11 @@
 export class HotelModel{
     constructor(
-        public id: string,
-        public name: string,
-        public address: string,
-        public phone: string,
-        public timesRequest: number,
-        public adminHotel: string
+        public id: String,
+        public name: String,
+        public address: String,
+        public phone: String,
+        public timesRequest: Number,
+        public adminHotel: String
     ){}
 }
+

@@ -42,5 +42,17 @@ export class HotelRestService {
       {headers: this.httpOptions});
   }
 
+  saveHotel(params: {}){
+    return this.http.post(environment.baseUrl + 'hotel/saveHotel', params,{headers: this.httpOptions});
+  }
+
+  updateHotel(id:string, params:{}){
+    return this.http.put(environment.baseUrl + 'hotel/updateHotel/' + id, params, {headers: this.httpOptions});
+  }
+
+  deleteHotel(id:string){
+    return this.http.delete(environment.baseUrl + 'hotel/deleteHotel/' + id, {headers: this.httpOptions});
+  }
+
   
 }

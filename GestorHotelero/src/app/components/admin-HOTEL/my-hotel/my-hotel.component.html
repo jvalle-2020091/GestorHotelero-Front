@@ -1,14 +1,17 @@
 <app-navbar></app-navbar>
-<body>
-    <br>
-    <div class="card-container">
-        <span class="pro"></span>
+
+<body >
+
+    
+ <div  class="card-container">
+
+        <span class="pro">HOTEL</span>
         <img class="round"  crossorigin="anonymous"  alt="hotel image" />
         <h3>{{hotelGetId.name}}</h3>
         <p>{{hotelGetId.address}}</p>
         <p>{{hotelGetId.phone}}</p>
         <p>{{ hotelGetId.timesRequest}}</p>
-        <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p>
+        <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p> 
 
         
         <div class="buttons">
@@ -20,49 +23,53 @@
                 Delete
              </button> </a>
            
-        </div>
+        </div> 
  
        <div class="skills">
             <h6>Added</h6>
             <div  class="text-center  ms-3">
-                <button class="btn btn-outline-danger btn-icon-split">Services</button>
+                <button class="btn btn-outline-danger btn-icon-split"  [routerLink]="['/service/' + hotelGetId._id]">Services</button>
                 <button class="btn btn-outline-success btn-icon-split m-2"  [routerLink]="['/event/' + hotelGetId._id]">Events</button>
-                <button class="btn btn-outline-primary btn-icon-split m-2">Rooms</button>
+                <button class="btn btn-outline-primary btn-icon-split m-2" [routerLink]="['/rooms/' + hotelGetId._id]">Rooms</button>
             </div>
         </div> 
     </div>  
+
+
+
+    
+</body>
+
 
 
     <!-- Off canvas update-->
 
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasGetUser" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasLabel">Update profile</h5>
+      <h5 class="offcanvas-title" id="offcanvasLabel">Update Hotel</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <form>
+      <form (ngSubmit)="updateHotel()" *ngIf="hotelGetId">
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input name="name" type="text" class="form-control" id="name">
+          <input [(ngModel)]="hotelGetId.name" name="name" type="text" class="form-control" id="name">
         </div>
         
         <div class="mb-3">
-          <label class="form-label"> Username</label>
-          <input name="username" type="text" class="form-control" id="username">
+          <label class="form-label"> Adrress</label>
+          <input [(ngModel)]="hotelGetId.address" name="adrress" type="text" class="form-control" id="username">
         </div>
         <div class="mb-3">
-          <label class="form-label"> Email</label>
-          <input  name="email" type="text" class="form-control" id="email">
+          <label class="form-label"> Phone</label>
+          <input [(ngModel)]="hotelGetId.phone"  name="email" type="text" class="form-control" id="email">
         </div>
         <div class="mb-3">
-          <label class="form-label">Teléfono</label>
-          <input name="phone" type="text" class="form-control">
+          <label class="form-label">Times Request</label>
+          <input [(ngModel)]="hotelGetId.timesRequest" name="timesRequest" type="text" class="form-control">
         </div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
           <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button> 
       </form>
     </div>
   </div>
-    
-</body>
