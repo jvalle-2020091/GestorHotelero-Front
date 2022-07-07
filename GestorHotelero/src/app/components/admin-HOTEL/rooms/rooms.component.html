@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 
 <div class="text-center mt-2 mb-2">
-    <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addEvent">
+    <button  class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addEvent">
       <span class="icon">
         <i class="fa fa-building" aria-hidden="true"></i>
       </span>
-      <span class="text">Add Room</span>
+      <span class="text">New Room</span>
     </button>
   </div>
   <hr>
@@ -54,7 +54,7 @@
 
               <div class="mb-3">
                 <label for="nameTeam" class="form-label">Price</label>
-                <input [(ngModel)]="room.price" name="name" type="text" class="form-control" id="nameTeam"
+                <input [(ngModel)]="room.price" name="name" type="number" class="form-control" id="nameTeam"
                   aria-describedby="DateEventHelp">
               </div>
 

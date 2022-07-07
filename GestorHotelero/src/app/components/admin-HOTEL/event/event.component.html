@@ -2,15 +2,15 @@
 
 
 <!--BOTONES DE ACCESO RÁPIDO-->
-<div class="text-center mt-2 mb-2">
-  <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addEvent">
+<div  *ngIf="token && identity.role === 'ADMIN-HOTEL' " class="text-center mt-2 mb-2">
+  <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addEvent">
     <span class="icon">
       <i class="fa fa-building" aria-hidden="true"></i>
     </span>
-    <span class="text">Add Event</span>
+    <span class="text">New Event</span>
   </button>
 </div>
-<hr>
+<hr *ngIf="token && identity.role === 'ADMIN-HOTEL' ">
 
 
 <!--CARDS -->
@@ -22,12 +22,12 @@
         <h6 class="card-subtitle mb-2 text-muted">Description: {{event.description}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">Date: {{event.dateEvent}}</h6>
       <div  class="text-center  ms-3">
-        <button (click)="getEvent(event._id)"  data-bs-toggle="modal"
+        <button *ngIf="token && identity.role === 'ADMIN-HOTEL' " (click)="getEvent(event._id)"  data-bs-toggle="modal"
           data-bs-target="#updateEvent" class="btn btn-warning m-2" aria-controls="offcanvasExample">
           <i class="fa fa-pencil" aria-hidden="true">
           </i> Update
         </button>
-        <button (click)="deleteEvent(event._id)" class="btn btn-danger"> <i class="fa fa-trash"
+        <button *ngIf="token && identity.role === 'ADMIN-HOTEL' " (click)="deleteEvent(event._id)" class="btn btn-danger"> <i class="fa fa-trash"
             aria-hidden="true"></i>
           Delete</button>
       </div>

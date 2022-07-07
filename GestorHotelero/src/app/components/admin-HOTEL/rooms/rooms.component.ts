@@ -112,12 +112,12 @@ export class RoomsComponent implements OnInit {
     this.roomRest.deleteRoom(this.idHotel, id ).subscribe({
       next: (res:any)=>{
         Swal.fire({
-          title: res.message + '' + res.roomDeleted.name,
+          title: res.message + ' ' + res.roomDeleted.name,
           icon: 'success',
           position: 'center',
           showConfirmButton: false,
           timer: 2000
-        })
+        });
         this.getRooms();
       },
       error: (err: { error: { message: any; }; })=> {Swal.fire({icon: 'warning', title: err.error.message || err.error, });

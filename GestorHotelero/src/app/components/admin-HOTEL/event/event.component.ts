@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { ActivatedRoute } from '@angular/router';
 import { EventModel } from 'src/app/models/event.model';
 import { EventAdminRestService } from 'src/app/services/eventRest/event-rest.service';
@@ -12,6 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class EventComponent implements OnInit
 {
+
+  token:any;
+  identity:any;
+  role:any;
   //Variables de TypeScript//
   events: any;
   event: EventModel;
@@ -24,6 +29,7 @@ export class EventComponent implements OnInit
   
   constructor
   (
+    private userRest: UserRestService,
     private eventRest: EventAdminRestService,
     private activatedRoute: ActivatedRoute
   )
@@ -36,6 +42,9 @@ export class EventComponent implements OnInit
       this.idHotel = idRuta.get('idHotel');
     });
     this.getEvents();
+    this.token = this.userRest.getToken();
+    this.identity = this.userRest.getIdentity();
+    this.role = this.userRest.getIdentity().role;
   }
 
   //METÓDOS DEL CRUD DE//
@@ -43,7 +52,7 @@ export class EventComponent implements OnInit
   {
     this.eventRest.getEvents(this.idHotel).subscribe({
       next: (res: any) => { this.events = res.events,
-        console.log(res.events);
+        console.log(res);
         
       },
         error: (err) => console.log(err)
@@ -57,7 +66,11 @@ export class EventComponent implements OnInit
         console.log( this.eventGetId );
         
       },
-      error: (err) => {alert(err.error.message)}
+      error: (err) => {Swal.fire({
+        icon: 'error',
+        title: err.error.message || err.error,
+        confirmButtonColor: '#E74C3C'
+      });}
     })
   }
 

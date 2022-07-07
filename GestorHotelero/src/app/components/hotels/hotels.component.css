@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 body{
     font-family: 'Roboto', sans-serif;
+  
 }
 h1{
     text-align: center;
@@ -14,19 +15,20 @@ h1{
 .card{
    max-width: 300px;
     min-height: 250px;
-    background: #215844;
+    background: #122968;
     padding: 30px;
     box-sizing: border-box;
     color: #FFF;
     margin:20px;
     box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+    
 }
-.card:nth-child(2){
+/*.card:nth-child(2){
    background: #1f407a;
 }
 .card:last-child{
    background: #253653;
-}
+}*/
 .card-title{
     margin-top: 0;
     font-size: 16px;
@@ -39,9 +41,10 @@ h1{
     line-height: 1.5;
 }
 .card-btn{
+    position:center;
     all: unset;
     display: block;
-    margin-left: auto;
+    margin-left: 65px;
     border: 2px solid #FFF;
     padding: 10px 15px;
     border-radius: 25px;
@@ -51,10 +54,29 @@ h1{
     cursor: pointer;
     letter-spacing: 1.2px;
 }
+
+.card-btn2{
+    all: unset;
+    
+    margin-left: 65px;
+    border: 2px solid #FFF;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.5s;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+}
 .card-btn:hover{
-   color:#1ddb96;
+   color:#0f1a4b;
    background: #FFF;
 }
+.card-btn2:hover{
+    color:#0f1a4b;
+    background: #FFF;
+ }
+/*
 .card:nth-child(2) .card-btn:hover{
    color:#135fe2;
    background: #FFF;
@@ -62,4 +84,5 @@ h1{
 .card:last-child .card-btn:hover{
    color:#253653;
     background: #FFF;
-}
+}*/
+

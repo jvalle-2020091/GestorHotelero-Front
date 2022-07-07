@@ -15,11 +15,11 @@
 
         
         <div class="buttons">
-            <button class="primary ghost"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
+            <button (click)="getHotel()"class="primary ghost"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
             aria-controls="offcanvasGetUser" >
                 Update
             </button>
-            <a href="">  <button class="primary ghost m-2" >
+            <a href="">  <button (click)="deleteHotel(hotelGetId._id)" class="primary ghost m-2" >
                 Delete
              </button> </a>
            
@@ -50,24 +50,21 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <form (ngSubmit)="updateHotel()" *ngIf="hotelGetId">
+      <form (ngSubmit)="updateHotel()" *ngIf="hotel">
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input [(ngModel)]="hotelGetId.name" name="name" type="text" class="form-control" id="name">
+          <input [(ngModel)]="hotel.name" name="name" type="text" class="form-control" id="name">
         </div>
         
         <div class="mb-3">
           <label class="form-label"> Adrress</label>
-          <input [(ngModel)]="hotelGetId.address" name="adrress" type="text" class="form-control" id="username">
+          <input [(ngModel)]="hotel.address" name="adrress" type="text" class="form-control" id="username">
         </div>
         <div class="mb-3">
           <label class="form-label"> Phone</label>
-          <input [(ngModel)]="hotelGetId.phone"  name="email" type="text" class="form-control" id="email">
+          <input [(ngModel)]="hotel.phone"  name="email" type="text" class="form-control" id="email">
         </div>
-        <div class="mb-3">
-          <label class="form-label">Times Request</label>
-          <input [(ngModel)]="hotelGetId.timesRequest" name="timesRequest" type="text" class="form-control">
-        </div>
+        
           <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
           <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button> 
       </form>

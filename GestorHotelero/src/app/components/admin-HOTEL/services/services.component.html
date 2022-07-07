@@ -2,7 +2,7 @@
 
 <div class="text-center m-3">
     <button type="button" class="btn btn-outline-success m-4" 
-      data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo Servicio</button>
+      data-bs-toggle="modal" data-bs-target="#exampleModal">New Service</button>
   </div>
   
 
@@ -25,7 +25,7 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
     <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pencil" aria-hidden="true"></i>
-      Update Event</h5>
+      Update Service</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -38,6 +38,12 @@
       <div class="mb-3">
         <label for="descriptionTeam" class="form-label">Description</label>
         <input [(ngModel)]="serviceGetId.description" name="description" type="text" class="form-control"
+          id="descriptionTeam" placeholder="Q.">
+      </div>
+
+      <div class="mb-3">
+        <label for="descriptionTeam" class="form-label">Price</label>
+        <input [(ngModel)]="serviceGetId.price" name="price" type="text" class="form-control"
           id="descriptionTeam">
       </div>
       
@@ -73,7 +79,7 @@
               </div>
               <div>
                 <label for="exampleInputEmail1" class="form-label">Price</label>
-                <input [(ngModel)]="service.price " name= "stock" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input [(ngModel)]="service.price " name= "stock" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Q.">
               </div>
               
             </div>

@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div *ngIf="token && identity.role === 'ADMIN-APP'" class="text-center mt-2 mb-2">
-  <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addHotel">
+  <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addHotel">
     <span class="icon">
       <i class="fa fa-building" aria-hidden="true"></i>
     </span>
@@ -20,7 +20,9 @@
     <h6 class="card-subtitle mb-2 text-muted">Ubication: {{hotel.address}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Phone: {{hotel.phone}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Times Request: {{hotel.timesRequest}}</h6>
-    <div *ngIf="token && identity.role === 'CLIENT'"> <button  routerLink="/reservation" class="card-btn">Reservation</button> </div>
+    <div  *ngIf="token && identity.role === 'CLIENT'"> <button [routerLink]="['/event/' + hotel._id]"  class="card-btn2">Events</button> </div>
+    <br>
+    <div  *ngIf="token && identity.role === 'CLIENT'"> <button  routerLink="/reservation" class="card-btn">Reservation</button> </div>
 		
     <div  *ngIf="token && identity.role === 'ADMIN-APP'" class="text-center  ms-3">
       <button (click)="deleteHotelByAdmin(hotel._id)" class="btn btn-outline-danger btn-icon-split">Delete</button>
@@ -54,10 +56,7 @@
             <label class="form-label">Phone</label>
             <input [(ngModel)]="hotel.phone" name="phone" type="text" class="form-control">
           </div>
-          <div class="mb-3">
-            <label class="form-label">Times Request</label>
-            <input [(ngModel)]="hotel.timesRequest" name="timesRequest" type="text" class="form-control">
-          </div>
+          
           <div class="mb-3">
             <label class="form-label">Admin</label>
             <select [(ngModel)]="hotel.adminHotel" name="adminHotel"class="form-select" aria-label="Default select example">

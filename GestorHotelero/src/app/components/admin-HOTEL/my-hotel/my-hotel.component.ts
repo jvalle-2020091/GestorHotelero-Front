@@ -73,6 +73,20 @@ export class MyHotelComponent implements OnInit {
     });
   }
 
+  getHotel() {
+    this.hotelRest.myHotel().subscribe({
+      next: (res: any) => {
+        this.hotel = res.hotel;
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'warning',
+          title: err.error.message || err.error,
+        });
+      },
+    });
+  }
+
   saveHotel(){
 
     this.hotelRest.saveHotel(this.hotel).subscribe({
@@ -101,7 +115,7 @@ export class MyHotelComponent implements OnInit {
   }
 
   updateHotel(){
-    this.hotelRest.updateHotel( this.hotelGetId._id, this.hotelGetId).subscribe({
+    this.hotelRest.updateHotel( this.hotelGetId._id, this.hotel).subscribe({
       next: (res:any)=> {
         Swal.fire ({ icon: 'success', title: res.message,});
         console.log(this.hotelId);
