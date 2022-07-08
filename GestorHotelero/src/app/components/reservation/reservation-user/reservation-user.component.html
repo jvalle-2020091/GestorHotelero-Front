@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class=" m-4">
+<div class=" text-center m-4">
     <button type="button" data-bs-toggle="offcanvas" href="#updateTask" aria-controls="updateTask" class="btn btn-dark">
         <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-calendar-check" viewBox="0 0 16 16">
@@ -10,6 +10,30 @@
                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
         </svg>
         Reservation</button>
+</div>
+
+<div class=" text-center m-4">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"class="btn btn-dark">
+        <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-calendar-check" viewBox="0 0 16 16">
+            <path
+                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+            <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+        </svg>
+        Rooms</button>
+</div>
+
+<div class=" text-center m-4">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalService"class="btn btn-dark">
+        <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-calendar-check" viewBox="0 0 16 16">
+            <path
+                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+            <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+        </svg>
+        Services</button>
 </div>
 
 
@@ -22,36 +46,39 @@
     </div>
     <div class="offcanvas-body">
 
-        <form>
-
-            <label class="form-label">Room</label>
-            <select name="complete" class="form-select" aria-label="Update task">
-                <option selected>Open this select Event</option>
-                <option value="true">...</option>
-                <option value="false">...</option>
+        <form #addReservationFrom="ngForm">
+            <!-- Muestra las habitaciones disponibles para hacer la reservación --> 
+            <label class="form-label" >Room | Disponibility | Price</label>
+            <select  [(ngModel)]="reservation.room"  name="room" class="form-select" aria-label="Update task">
+                <option disabled value="" selected>Open this select Room</option>
+                <option *ngFor="let room of roomGetId" value="{{room._id}}">{{ room.name}} | {{room.available}} | Q{{room.price}}</option>
             </select>
-
+            <!-- Selecciona la fecha en que comenzara la reservación -->
             <div class="mb-3">
                 <label for="titleInputUpdate" class="form-label">Entry date</label>
-                <input placeholder="e. g. Wash car" name="title" type="datetime-local" class="form-control"
+                <input  [(ngModel)]="reservation.startDate"  placeholder="e. g. Wash car" name="startDate" type="date" class="form-control"
                     id="titleInputUpdate">
             </div>
+            
+            <!-- Selecciona la fecha en que finaliza la reservación -->
             <div class="mb-3">
                 <label for="descriptionInputUpdate" class="form-label">Departure date</label>
-                <input placeholder="e. g. Wash car at 15:00" name="description" type="datetime-local"
+                <input [(ngModel)]="reservation.endDate" placeholder="e. g. Wash car at 15:00" name="endDate" type="date"
                     class="form-control" id="descriptionInputUpdate">
             </div>
-            <label class="form-label">Event</label>
-            <select name="complete" class="form-select" aria-label="Update task">
-                <option selected>Open this select Event</option>
-                <option value="true">...</option>
-                <option value="false">...</option>
+
+            <!-- Muestra los servicios que desea en la reservación --> 
+            <label class="form-label">Service | Type | Price</label>
+            <select [(ngModel)]="reservation.service" name="service" class="form-select" aria-label="Update task">
+                <option selected>Open this select Service</option>
+                <option *ngFor="let service of services" value="{{service._id}}">{{service.name}} | {{service.description}} | Q{{service.price}}</option>
+
             </select>
             <br>
             <hr>
             <div class="text-center">
                 <button type="button" class="me-2 btn btn-secondary" data-bs-dismiss="offcanvas">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Reserve</button>
+                <button type="button" (click)="addReservation(addReservationFrom)"  type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">Reserve</button>
             </div>
         </form>
 
@@ -61,5 +88,73 @@
 
 
 
-            
-            
+<!-- Table de todos las habitaciones existentes-->     
+  <div class="modal fade" tabindex="-1" id="exampleModal"  aria-labelledby="exampleModalLabel"  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " >Rooms</h5>
+        </div>
+        <div class="modal-body">    
+            <table class="table table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Disponibility</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let room of roomGetId; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{room.name}}</td>
+                    <td>{{room.description}}</td>
+                    <td>{{room.available}}</td>
+                    <td>{{room.price}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table de todos las servicios existentes-->     
+  <div class="modal fade" tabindex="-1" id="exampleModalService"  aria-labelledby="exampleModalLabel"  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " >Rooms</h5>
+        </div>
+        <div class="modal-body">    
+            <table class="table table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Description</th>
+
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let service of services; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{service.name}}</td>
+                    <td>{{service.description}}</td>
+                    <td>{{service.price}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

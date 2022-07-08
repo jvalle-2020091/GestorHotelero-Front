@@ -2,7 +2,7 @@
 
 
 <!--BOTONES DE ACCESO RÁPIDO-->
-<div  *ngIf="token && identity.role === 'ADMIN-HOTEL' " class="text-center mt-2 mb-2">
+<div *ngIf="token && identity.role === 'ADMIN-HOTEL' " class="text-center mt-2 mb-2">
   <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addEvent">
     <span class="icon">
       <i class="fa fa-building" aria-hidden="true"></i>
@@ -12,36 +12,67 @@
 </div>
 <hr *ngIf="token && identity.role === 'ADMIN-HOTEL' ">
 
-
-<!--CARDS -->
-<div  class="row justify-content-center px-4" *ngIf="events">
-  <div *ngFor="let event of events" class="card m-4" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ event.name}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Type: {{event.typeEvent}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Description: {{event.description}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Date: {{event.dateEvent}}</h6>
-      <div  class="text-center  ms-3">
-        <button *ngIf="token && identity.role === 'ADMIN-HOTEL' " (click)="getEvent(event._id)"  data-bs-toggle="modal"
-          data-bs-target="#updateEvent" class="btn btn-warning m-2" aria-controls="offcanvasExample">
-          <i class="fa fa-pencil" aria-hidden="true">
-          </i> Update
+<div class="text-center m-4">
+<table class="container ">
+  <thead>
+    <tr>
+      <th>
+        <h1>Name</h1>
+      </th>
+      <th>
+        <h1>Type</h1>
+      </th>
+      <th>
+        <h1>Description</h1>
+      </th>
+      <th>
+        <h1>Date</h1>
+      </th>
+      <th>
+        <h1>Actions</h1>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td> {{ event.name }} </td>
+      <td>{{ event.typeEvent }}</td>
+      <td>{{ event.description }} </td>
+      <td>{{ event.dateEvent }} </td>
+      <td>
+        <button *ngIf="token && identity.role === 'ADMIN-HOTEL' " (click)="getEvent(event._id)" data-bs-toggle="modal"
+          data-bs-target="#updateEvent" class=" btn btn-outline-warning m-2 ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-bookmark-check" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+            <path
+              d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+          </svg>
+          Update
         </button>
-        <button *ngIf="token && identity.role === 'ADMIN-HOTEL' " (click)="deleteEvent(event._id)" class="btn btn-danger"> <i class="fa fa-trash"
-            aria-hidden="true"></i>
+        <button *ngIf="token && identity.role === 'ADMIN-HOTEL' " (click)="deleteEvent(event._id)"
+                 class=" btn btn-outline-danger ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+            viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+            <path fill-rule="evenodd"
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+          </svg>
           Delete</button>
-      </div>
-    </div>
-  </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </div>
-
 
 <!--MODAL ADD -->
 <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-building" aria-hidden="true"></i>
+        <h5 class="modal-title" id="exampleModalLabel4"><i class="fa fa-building" aria-hidden="true"></i>
           &nbsp; Add Event:</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -49,29 +80,29 @@
         <form #addEventForm="ngForm">
           <div class="mb-3">
             <label for="nameTeam" class="form-label">Name</label>
-            <input [(ngModel)]="event.name" name="name" type="text" class="form-control" id="nameTeam"
+            <input [(ngModel)]="event.name" name="name" type="text" class="form-control" id="nameTeam43"
               aria-describedby="DateEventHelp">
           </div>
           <div class="mb-3">
             <label for="descriptionTeam" class="form-label">Description</label>
             <input [(ngModel)]="event.description" name="description" type="text" class="form-control"
-              id="descriptionTeam">
+              id="descriptionTeamte">
           </div>
           <div class="mb-3">
             <label for="countryTeam" class="form-label">typeEvent</label>
-            <input [(ngModel)]="event.typeEvent" name="typeEvent" type="text" class="form-control" id="countryTeam">
+            <input [(ngModel)]="event.typeEvent" name="typeEvent" type="text" class="form-control" id="countryTeam34">
           </div>
           <div class="mb-3">
             <label for="countryTeam" class="form-label">DateEvent</label>
-            <input [(ngModel)]="event.dateEvent" name="dateEvent" type="date" class="form-control" id="countryTeam">
+            <input [(ngModel)]="event.dateEvent" name="dateEvent" type="date" class="form-control" id="countryTeam5">
           </div>
         </form>
       </div>
       <div class=" modal-footer justify-content-center">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
           <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Save</button>
-          <button (click)="addEvent(addEventForm)" type="submit" class="btn btn-success"
-          data-bs-dismiss="modal"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save Event
+        <button (click)="addEvent(addEventForm)" type="submit" class="btn btn-success" data-bs-dismiss="modal"><i
+            class="fa fa-floppy-o" aria-hidden="true"></i> Save Event
         </button>
       </div>
     </div>
@@ -102,11 +133,13 @@
           </div>
           <div class="mb-3">
             <label for="countryTeam" class="form-label">typeEvent</label>
-            <input [(ngModel)]="eventGetId.typeEvent" name="typeEvent" type="text" class="form-control" id="countryTeam">
+            <input [(ngModel)]="eventGetId.typeEvent" name="typeEvent" type="text" class="form-control"
+              id="countryTeamww">
           </div>
           <div class="mb-3">
             <label for="countryTeam" class="form-label">DateEvent</label>
-            <input [(ngModel)]="eventGetId.dateEvent" name="dateEvent" type="date" class="form-control" id="countryTeam">
+            <input [(ngModel)]="eventGetId.dateEvent" name="dateEvent" type="date" class="form-control"
+              id="countryTeamwer">
           </div>
           <div class=" modal-footer justify-content-center">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">

@@ -21,11 +21,11 @@ export class RoomServiceService {
 //Cliente
 
     getRoomsByHotel(id: any){
-      return this.http.get(environment.baseUrl + 'room/getRoomsByHotel' + id ,{headers: this.httpOptions});
+      return this.http.get(environment.baseUrl + 'room/getRoomsByHotel/' + id ,{headers: this.httpOptions});
     }
 
     getRoomsAvailable(idHotel : any){
-      return this.http.get(environment.baseUrl + 'room/getRoomsAvailable' + idHotel, {headers: this.httpOptions});
+      return this.http.get(environment.baseUrl + 'room/getRoomsAvailable/' + idHotel, {headers: this.httpOptions});
     }
 
     getRooms(idHotel: any){

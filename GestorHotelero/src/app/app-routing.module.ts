@@ -16,7 +16,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { EventComponent } from './components/admin-HOTEL/event/event.component';
 import { MyHotelComponent } from './components/admin-HOTEL/my-hotel/my-hotel.component';
-import { HotelComponent } from './components/admin-HOTEL/hotel/hotel.component';
+import { InvoiceComponent } from './components/admin-HOTEL/invoice/invoice.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -29,14 +29,14 @@ const routes: Routes = [
   {path: 'hotels', component: HotelsComponent},
   {path: 'myProfile', component: MyProfileComponent},
   {path: 'users', component: UsersComponent},
-  {path: 'reservation', component: ReservationUserComponent},
+  {path: 'reservation/:idHotel', component: ReservationUserComponent},
   {path: 'reservationAdminHotel', component: ReservationAdminHotelComponent},
   {path: 'reservationAdminApp', component: ReservationAdminAppComponent},
   {path: 'event/:idHotel', component: EventComponent},
   {path: 'myHotel', component:  MyHotelComponent },
   {path: 'service/:idHotel', component: ServicesComponent },
   {path: 'rooms/:idHotel', component: RoomsComponent},
-  {path: 'hotel', component: HotelComponent},
+  {path: 'invoice', component: InvoiceComponent},
 
   {path: '**', component:NotFoundComponent}
 ];

@@ -21,8 +21,8 @@ export class serviceHotelRestService {
     return this.http.post(environment.baseUrl + 'service/addService/' + id , params, { headers: this.httpOptions });
   }
 
-  getServiceByHotel(hotelId: string){
-    return this.http.get(environment.baseUrl + 'service/getServicesByHotel/' + hotelId, {headers: this.httpOptions});
+  getServiceByHotel(id: string){
+    return this.http.get(environment.baseUrl + 'service/getServicesByHotel/' + id, {headers: this.httpOptions});
   }
 
   

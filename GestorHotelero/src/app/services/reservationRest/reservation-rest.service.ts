@@ -21,5 +21,8 @@ export class ReservationRestService {
     return this.http.get(environment.baseUrl + 'hotel/getHotels', { headers: this.httpOptions });
   }
 
+  addReservation(idHotel: string, params: {}){
+    return this.http.post(environment.baseUrl + 'reservation/addReservation/' + idHotel , params, {headers: this.httpOptions})
+  }
 }
 

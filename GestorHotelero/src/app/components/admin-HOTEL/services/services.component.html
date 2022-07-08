@@ -4,27 +4,60 @@
     <button type="button" class="btn btn-outline-success m-4" 
       data-bs-toggle="modal" data-bs-target="#exampleModal">New Service</button>
   </div>
-  
-
   <hr>
-<div class="row background">
-  <div *ngFor="let service of services " class="card m-4 text-center" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ service.name }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Descripcion: {{ service.description }}</h6>
-      <h6 class="card-subtitle mb-2 text-muted">Q.{{ service.price }}</h6>
-      <button (click)="getService(service._id)" class="btn btn-warning m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-        Update
-      </button>
-      <button (click)="deleteService(service._id)" class="btn btn-danger ">Delete</button>
-    </div>
-  </div>
-</div>
+
+  <table class="container">
+    <thead>
+      <tr>
+        <th>
+          <h1>Name</h1>
+        </th>
+        <th>
+          <h1>Description</h1>
+        </th>
+        <th>
+          <h1>Price</h1>
+        </th>
+        <th>
+          <h1>Actions</h1>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let service of services ">
+        <td> {{ service.name }} </td>
+        <td>{{service.description}}</td>
+        <td>Q.{{ service.price }} </td>
+        <td>
+          <button  (click)="getService(service._id)" class="btn btn-outline-warning m-2" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-bookmark-check" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+              <path
+                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+            </svg>
+            Update
+          </button>
+          <button (click)="deleteService(service._id)" class="btn btn-outline-danger ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+              viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+              <path fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg>
+            Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
  <!-- off canvas update -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
-    <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pencil" aria-hidden="true"></i>
+    <h5 class="modal-title" id="exampleModalLabel2"><i class="fa fa-pencil" aria-hidden="true"></i>
       Update Service</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
@@ -38,7 +71,7 @@
       <div class="mb-3">
         <label for="descriptionTeam" class="form-label">Description</label>
         <input [(ngModel)]="serviceGetId.description" name="description" type="text" class="form-control"
-          id="descriptionTeam" placeholder="Q.">
+          id="descriptionTeam3" placeholder="Q.">
       </div>
 
       <div class="mb-3">
@@ -71,11 +104,11 @@
             <div class="mb-3">
               <div>
                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                <input [(ngModel)]="service.name" name= "name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input [(ngModel)]="service.name" name= "name" type="text" class="form-control" id="exampleInputEmail133" aria-describedby="emailHelp">
               </div>
               <div>
                 <label for="exampleInputEmail1" class="form-label">Description</label>
-                <input [(ngModel)]="service.description " name= "provider" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input [(ngModel)]="service.description " name= "provider" type="text" class="form-control" id="exampleInputEmail13" aria-describedby="emailHelp">
               </div>
               <div>
                 <label for="exampleInputEmail1" class="form-label">Price</label>
