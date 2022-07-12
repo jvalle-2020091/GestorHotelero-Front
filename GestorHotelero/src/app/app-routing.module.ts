@@ -36,7 +36,7 @@ const routes: Routes = [
   {path: 'myHotel', component:  MyHotelComponent },
   {path: 'service/:idHotel', component: ServicesComponent },
   {path: 'rooms/:idHotel', component: RoomsComponent},
-  {path: 'invoice', component: InvoiceComponent},
+  {path: 'invoice/:idReser', component: InvoiceComponent},
 
   {path: '**', component:NotFoundComponent}
 ];

@@ -21,25 +21,24 @@
                   Street Address<br>
                   City, Zip Code<br>
                   Phone: (123) 456-7890<br>
-                  Fax: (123) 456-7890
+
                </address>
             </div>
-            <div class="invoice-to">
-               <small>to</small>
+            <div class="invoice-to" *ngIf="invoiceId">
                <address class="m-t-5 m-b-5">
-                  <strong class="text-inverse">Company Name</strong><br>
-                  Street Address<br>
-                  City, Zip Code<br>
-                  Phone: (123) 456-7890<br>
-                  Fax: (123) 456-7890
+                  <strong class="text-inverse">Name: {{invoiceId.name}}</strong><br>
+                  NIT: {{invoiceId.NIT}}<br>
+                  Start Date: {{invoiceId.reservations.startDate}}<br>
+                  End Date: {{invoiceId.reservations.startDate}}<br>
+
                </address>
             </div>
-            <div class="invoice-date">
-               <small>Invoice / July period</small>
-               <div class="date text-inverse m-t-5">August 3,2012</div>
+            <div class="invoice-date" *ngIf="invoiceId">
+               <small>Invoice </small>
+               <div class="date text-inverse m-t-5">Date {{invoiceId.date}}</div>
                <div class="invoice-detail">
-                  #0000123DSS<br>
-                  Services Product
+                  Serial {{invoiceId.serial}}<br>
+                  Reservation of room and services
                </div>
             </div>
          </div>
@@ -106,8 +105,8 @@
                      </div>
                   </div>
                </div>
-               <div class="invoice-price-right">
-                  <small>TOTAL</small> <span class="f-w-600">$4508.00</span>
+               <div class="invoice-price-right"  *ngIf="invoiceId">
+                  <small>TOTAL</small> <span class="f-w-600">Q{{invoiceId.reservations.totalPrice}}.00</span>
                </div>
             </div>
             <!-- end invoice-price -->

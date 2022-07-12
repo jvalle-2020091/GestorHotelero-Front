@@ -24,5 +24,21 @@ export class ReservationRestService {
   addReservation(idHotel: string, params: {}){
     return this.http.post(environment.baseUrl + 'reservation/addReservation/' + idHotel , params, {headers: this.httpOptions})
   }
+
+  myReservations(idHotel: string){
+    return this.http.get(environment.baseUrl + 'reservation/myReservations/' + idHotel, {headers: this.httpOptions});
+  }
+
+  getReservation(idHotel: string, id: string){
+    return this.http.get(environment.baseUrl + 'reservation/getReservation/' + idHotel + '/' + id, {headers: this.httpOptions});
+  }
+
+  addInvoice(id: string, params: {}){
+    return this.http.post(environment.baseUrl + 'invoice/addInvoice/' + id, params , {headers: this.httpOptions});
+  }
+
+  getInvoice(idReser: string){
+    return this.http.get(environment.baseUrl + 'invoice/getInvoice/' + idReser,{headers: this.httpOptions})
+  }
 }
 

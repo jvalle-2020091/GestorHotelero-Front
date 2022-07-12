@@ -61,11 +61,8 @@ export class EventComponent implements OnInit
 
   getEvent(id: string) {
     this.eventRest.getEvent(this.idHotel, id).subscribe({
-      next: (res: any) => {
-        this.eventGetId = res.checkEventHotel;
-        console.log( this.eventGetId );
-        
-      },
+      next: (res: any) => 
+        this.eventGetId = res.checkEventHotel, 
       error: (err) => {Swal.fire({
         icon: 'error',
         title: err.error.message || err.error,

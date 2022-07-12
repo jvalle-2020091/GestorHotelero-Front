@@ -1,121 +1,302 @@
 <app-navbar></app-navbar>
 
 <div class=" text-center m-4">
-    <button type="button" data-bs-toggle="offcanvas" href="#updateTask" aria-controls="updateTask" class="btn btn-dark">
-        <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-calendar-check" viewBox="0 0 16 16">
-            <path
-                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-            <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-        </svg>
-        Reservation</button>
+  <button type="button" data-bs-toggle="offcanvas" href="#updateTask" aria-controls="updateTask" class="btn btn-dark">
+    <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-calendar-check" viewBox="0 0 16 16">
+      <path
+        d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+      <path
+        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+    </svg>
+    Reservation</button>
+</div>
+
+  <!-- Table de todos las servicios existentes-->
+  <div class="modal fade" tabindex="-1" id="exampleModalService" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ">Rooms</h5>
+        </div>
+        <div class="modal-body">
+          <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Service</th>
+                <th scope="col">Description</th>
+
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let service of services; let i = index">
+                <th scope="row">{{ i+1 }}</th>
+                <td>{{service.name}}</td>
+                <td>{{service.description}}</td>
+                <td>{{service.price}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table de todos las habitaciones existentes-->
+  <div class="modal fade" tabindex="-1" id="exampleModal2" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ">Rooms</h5>
+        </div>
+        <div class="modal-body">
+          <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Room</th>
+                <th scope="col">Description</th>
+                <th scope="col">Disponibility</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let room of roomGetId; let i = index">
+                <th scope="row">{{ i+1 }}</th>
+                <td>{{room.name}}</td>
+                <td>{{room.description}}</td>
+                <td>{{room.available}}</td>
+                <td>{{room.price}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Modal Invoice-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Invoice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addInvoiceForm="ngForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">NAME</label>
+            <input [(ngModel)]="invoice.name" name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Nombre a quien saldrá la factura</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">NIT</label>
+            <input [(ngModel)]="invoice.NIT" name="NIT" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Vacio C/F</div>
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button  (click)="addInvoice(addInvoiceForm)" type="submit" class="btn btn-primary" >Invoice</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class=" text-center m-4">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"class="btn btn-dark">
-        <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-calendar-check" viewBox="0 0 16 16">
-            <path
-                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-            <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-        </svg>
-        Rooms</button>
+  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-dark">
+    <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-calendar-check" viewBox="0 0 16 16">
+      <path
+        d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+      <path
+        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+    </svg>
+    Rooms</button>
 </div>
 
 <div class=" text-center m-4">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalService"class="btn btn-dark">
-        <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-calendar-check" viewBox="0 0 16 16">
-            <path
-                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-            <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-        </svg>
-        Services</button>
+  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalService" class="btn btn-dark">
+    <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-calendar-check" viewBox="0 0 16 16">
+      <path
+        d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+      <path
+        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+    </svg>
+    Services</button>
 </div>
 
 
 <!-- offcanvas update Reservation -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="updateTask" aria-labelledby="offcanvasUpdateLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasUpdateLabel">Reservation </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasUpdateLabel">Reservation </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
 
-        <form #addReservationFrom="ngForm">
-            <!-- Muestra las habitaciones disponibles para hacer la reservación --> 
-            <label class="form-label" >Room | Disponibility | Price</label>
-            <select  [(ngModel)]="reservation.room"  name="room" class="form-select" aria-label="Update task">
-                <option disabled value="" selected>Open this select Room</option>
-                <option *ngFor="let room of roomGetId" value="{{room._id}}">{{ room.name}} | {{room.available}} | Q{{room.price}}</option>
-            </select>
-            <!-- Selecciona la fecha en que comenzara la reservación -->
-            <div class="mb-3">
-                <label for="titleInputUpdate" class="form-label">Entry date</label>
-                <input  [(ngModel)]="reservation.startDate"  placeholder="e. g. Wash car" name="startDate" type="date" class="form-control"
-                    id="titleInputUpdate">
-            </div>
-            
-            <!-- Selecciona la fecha en que finaliza la reservación -->
-            <div class="mb-3">
-                <label for="descriptionInputUpdate" class="form-label">Departure date</label>
-                <input [(ngModel)]="reservation.endDate" placeholder="e. g. Wash car at 15:00" name="endDate" type="date"
-                    class="form-control" id="descriptionInputUpdate">
-            </div>
+    <form #addReservationFrom="ngForm">
+      <!-- Muestra las habitaciones disponibles para hacer la reservación -->
+      <label class="form-label">Room | Disponibility | Price</label>
+      <select [(ngModel)]="reservation.room" name="room" class="form-select" aria-label="Update task">
+        <option disabled value="" selected>Open this select Room</option>
+        <option *ngFor="let room of roomGetId" value="{{room._id}}">{{ room.name}} | {{room.available}} |
+          Q{{room.price}}</option>
+      </select>
+      <!-- Selecciona la fecha en que comenzara la reservación -->
+      <div class="mb-3">
+        <label for="titleInputUpdate" class="form-label">Entry date</label>
+        <input [(ngModel)]="reservation.startDate" placeholder="e. g. Wash car" name="startDate" type="date"
+          class="form-control" id="titleInputUpdate">
+      </div>
 
-            <!-- Muestra los servicios que desea en la reservación --> 
-            <label class="form-label">Service | Type | Price</label>
-            <select [(ngModel)]="reservation.service" name="service" class="form-select" aria-label="Update task">
-                <option selected>Open this select Service</option>
-                <option *ngFor="let service of services" value="{{service._id}}">{{service.name}} | {{service.description}} | Q{{service.price}}</option>
+      <!-- Selecciona la fecha en que finaliza la reservación -->
+      <div class="mb-3">
+        <label for="descriptionInputUpdate" class="form-label">Departure date</label>
+        <input [(ngModel)]="reservation.endDate" placeholder="e. g. Wash car at 15:00" name="endDate" type="date"
+          class="form-control" id="descriptionInputUpdate">
+      </div>
 
-            </select>
-            <br>
-            <hr>
-            <div class="text-center">
-                <button type="button" class="me-2 btn btn-secondary" data-bs-dismiss="offcanvas">Close</button>
-                <button type="button" (click)="addReservation(addReservationFrom)"  type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">Reserve</button>
-            </div>
-        </form>
+      <!-- Muestra los servicios que desea en la reservación -->
+      <label class="form-label">Service | Type | Price</label>
+      <select [(ngModel)]="reservation.service" name="service" class="form-select" aria-label="Update task">
+        <option selected>Open this select Service</option>
+        <option *ngFor="let service of services" value="{{service._id}}">{{service.name}} | {{service.description}} |
+          Q{{service.price}}</option>
 
-    </div>
+      </select>
+      <br>
+      <hr>
+      <div class="text-center">
+        <button type="button" class="me-2 btn btn-secondary" data-bs-dismiss="offcanvas">Close</button>
+        <button type="button" (click)="addReservation(addReservationFrom)" type="button" class="btn btn-primary"
+          data-bs-dismiss="offcanvas">Reserve</button>
+      </div>
+    </form>
+
+  </div>
 </div>
 
 
 
+<!-- Table de todos las reservaciones hechas-->
+<div class="text-center m-5">
+  <table class="table table-dark table-striped  ">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Start date</th>
+        <th scope="col">End date</th>
+        <th scope="col">Total</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations; let i = index">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{reservation.startDate}}</td>
+        <td>{{reservation.endDate}}</td>
+        <td>{{reservation.totalPrice}}</td>
+        <td>
 
-<!-- Table de todos las habitaciones existentes-->     
-  <div class="modal fade" tabindex="-1" id="exampleModal"  aria-labelledby="exampleModalLabel"  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " >Rooms</h5>
-        </div>
-        <div class="modal-body">    
-            <table class="table table-dark table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Room</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Disponibility</th>
-                    <th scope="col">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr  *ngFor="let room of roomGetId; let i = index">
-                    <th scope="row">{{ i+1 }}</th>
-                    <td>{{room.name}}</td>
-                    <td>{{room.description}}</td>
-                    <td>{{room.available}}</td>
-                    <td>{{room.price}}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <button data-bs-toggle="modal" data-bs-target="#updateEvent" class=" btn btn-outline-warning m-2 ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-bookmark-check" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+              <path
+                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+            </svg>
+
+          </button>
+
+          <button class=" btn btn-outline-danger m-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+              viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+              <path fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg>
+          </button>
+
+          <button (click)="getReservation(reservation._id)" data-bs-toggle="modal"
+            data-bs-target="#exampleModalReservation" class=" btn btn-outline-primary ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+              viewBox="0 0 16 16">
+              <path
+                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+            </svg>
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Table de todos las servicios existentes-->
+<div class="modal fade" tabindex="-1" id="exampleModalReservation" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title ">Reservation</h5>
+      </div>
+      <div class="modal-body" *ngIf="reservationGetId">
+        <div class="row">
+          <div>
+            <div class="card">
+              <div class="card-body" >
+                <h5 class="card-title">Name: {{reservationGetId.user.name}}</h5>
+                <p class="card-text">Start: {{reservationGetId.startDate}}</p>
+                <p class="card-text">End: {{reservationGetId.endDate}}</p>
+                <!-- <p class="card-text">Room: {{reservationGetId.room.name}}</p>
+                <p class="card-text"> Q.{{reservationGetId.room.price}}</p>
+                <p class="card-text"> Services</p>
+                <p class="card-text"> {{reservationGetId.service.name}}</p> -->
+
+                <button (click)="getReservation(reservationGetId._id)" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+                    <path
+                      d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+                    <path
+                      d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z" />
+                  </svg>
+                  Invoice
+                </button>
+
+                <!-- Button trigger modal -->
+                <button   [routerLink]="['/invoice/' + reservationGetId._id]" type="button" class=" btn btn-outline-primary m-2" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                  </svg>
+                  View Invoice
+                </button>
+                
+              </div>
+            </div>
+          </div>
+
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
@@ -124,37 +305,6 @@
     </div>
   </div>
 
-  <!-- Table de todos las servicios existentes-->     
-  <div class="modal fade" tabindex="-1" id="exampleModalService"  aria-labelledby="exampleModalLabel"  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " >Rooms</h5>
-        </div>
-        <div class="modal-body">    
-            <table class="table table-dark table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Service</th>
-                    <th scope="col">Description</th>
 
-                    <th scope="col">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr  *ngFor="let service of services; let i = index">
-                    <th scope="row">{{ i+1 }}</th>
-                    <td>{{service.name}}</td>
-                    <td>{{service.description}}</td>
-                    <td>{{service.price}}</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
