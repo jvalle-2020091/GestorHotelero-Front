@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit {
     this.role = this.userRest.getIdentity().role;
     this.name = this.userRest.getIdentity().name;
 
-    let outService = localStorage.getItem('outService');
     if(this.token != ''){
       this.userImage = this.userRest.getIdentity().image;
       this.uri = environment.baseUrl + 'user/getImage/' + this.userImage;

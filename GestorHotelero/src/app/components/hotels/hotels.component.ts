@@ -19,6 +19,8 @@ export class HotelsComponent implements OnInit {
   hotelId: any;
   hotelUpdate: any;
 
+  usersAdmin:any;
+
 
   hoteles: any;
   hotel: HotelModel;
@@ -28,12 +30,13 @@ export class HotelsComponent implements OnInit {
     private hotelRest: HotelRestService,
     private userAdminRest: UserAdminRestService
   ) { 
-    this.hotel = new HotelModel('', '', '', '',  0, '');
+    this.hotel = new HotelModel('', '', '', '', '',  0, '');
   }
 
   ngOnInit(): void {
     this.getHotels();
     this.getUsers();
+    this.getAdminsHotel();
     this.token = this.userRest.getToken();
     this.identity = this.userRest.getIdentity();
     this.role = this.userRest.getIdentity().role;
@@ -63,6 +66,21 @@ export class HotelsComponent implements OnInit {
     this.userAdminRest.getUsers().subscribe({
       next: (res: any) => {
         this.users = res.usersExist,
+        console.log(this.users);
+        
+      },
+      error: (err) => {
+        console.log(err);
+        
+      }
+    })
+  }
+
+  
+  getAdminsHotel(){
+    this.userAdminRest.getAdminsHotel().subscribe({
+      next: (res: any) => {
+        this.usersAdmin = res.usersExist,
         console.log(this.users);
         
       },

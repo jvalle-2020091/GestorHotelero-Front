@@ -12,7 +12,7 @@
 
 <div class="wrapper" *ngIf="users">
 <div class="card" *ngFor="let user of users">
-    <img src="" class="card-img-top" alt="...">
+    <img  class="card-img-top" *ngIf="userImage" crossorigin="anonymous" src="{{ uri }}" alt="user image">
     <br>
 	<h3 class="card-title">{{user.name}}</h3>
     <h6 class="card-subtitle mb-2 text-muted">{{user.username}}</h6>

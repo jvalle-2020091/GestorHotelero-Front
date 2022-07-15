@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { UserAdminRestService } from 'src/app/services/userAdminRest/user-admin-rest.service'
 import { UserModel } from 'src/app/models/user.model';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,16 +15,36 @@ export class UsersComponent implements OnInit {
   user: UserModel;
   searchUser: any;
   userUpdated: any; 
+  token:string;
+  identity:any;
+  role:any;
+  username:any;
+  name:any;
+
+  
+  uri:any;
+  userImage:any;
   
 
   constructor(
+    private userRest: UserRestService,
     private userAdminRest: UserAdminRestService,
   ) { 
     this.user = new UserModel('', '', '', '', '', '', '', '' );
+    this.token = this.userRest.getToken();
   }
 
   ngOnInit(): void {
     this.getUsers();
+    this.token = this.userRest.getToken();
+    this.identity = this.userRest.getIdentity();
+    this.role = this.userRest.getIdentity().role;
+    this.name = this.userRest.getIdentity().name;
+
+    if(this.token != ''){
+      this.userImage = this.userRest.getIdentity().image;
+      this.uri = environment.baseUrl + 'user/getImage/' + this.userImage;
+    }
   }
 
   getUsers(){

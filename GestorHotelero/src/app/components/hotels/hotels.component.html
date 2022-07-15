@@ -20,6 +20,7 @@
     <h6 class="card-subtitle mb-2 text-muted">Ubication: {{hotel.address}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Phone: {{hotel.phone}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Times Request: {{hotel.timesRequest}}</h6>
+    <h6  *ngIf="token && identity.role === 'ADMIN-APP'" class="card-subtitle mb-2 text-muted">Admin: {{hotel.adminHotel.username}}</h6>
     <div  *ngIf="token && identity.role === 'CLIENT'"> <button [routerLink]="['/event/' + hotel._id]"  class="card-btn2">Events</button> </div>
     <br>
     <div  *ngIf="token && identity.role === 'CLIENT'"> <button  [routerLink]="['/reservation/' + hotel._id]" class="card-btn">Reservation</button> </div>
@@ -61,7 +62,7 @@
             <label class="form-label">Admin</label>
             <select [(ngModel)]="hotel.adminHotel" name="adminHotel"class="form-select" aria-label="Default select example">
               <option disabled value="" selected>Open this select menu</option>
-              <option *ngFor="let user of users" value="{{ user._id }}">{{ user.name }} | {{user.role}}</option>
+              <option *ngFor="let user of usersAdmin" value="{{ user._id }}">{{ user.username }} | {{user.role}}</option>
             </select>
           </div>
         </form>
@@ -106,7 +107,7 @@
                 <label class="form-label">Admin</label>
                 <select [(ngModel)]="hotelUpdate.adminHotel" name="adminHotelUpdate"class="form-select" aria-label="Default select example" id="adminHotelUpdate">
                   <option disabled value="" selected>Open this select menu</option>
-                  <option *ngFor="let user of users" value="{{ user._id }}">{{ user.name }}</option>
+                  <option *ngFor="let user of usersAdmin" value="{{ user._id }}">{{ user.username }}</option>
                 </select>
               </div>
 

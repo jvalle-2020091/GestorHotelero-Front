@@ -4,6 +4,7 @@ export class HotelModel{
         public name: String,
         public address: String,
         public phone: String,
+        public image: String,
         public timesRequest: Number,
         public adminHotel: String
     ){}

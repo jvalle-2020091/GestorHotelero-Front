@@ -24,6 +24,10 @@ export class UserAdminRestService {
     return this.http.get(environment.baseUrl + 'user/getUsers', {headers: this.httpOptions});
   }
 
+  getAdminsHotel(){
+    return this.http.get(environment.baseUrl + 'user/getAdminsHotel', {headers: this.httpOptions});
+  }
+
   getUser(id : string)
   {
     return this.http.get(environment.baseUrl + 'user/getUser/' + id, {headers : this.httpOptions});

@@ -16,7 +16,11 @@
  <div *ngIf="hotelGetId" class="card-container">
 
         <span class="pro">HOTEL</span>
-        <img class="round"  crossorigin="anonymous"  alt="hotel image" />
+
+        <img *ngIf="hotel.hasOwnProperty('image') == false"
+        src="https://img.unocero.com/2020/01/trivago-miente-usuarios-1024x576.jpg" class="round">
+    <img *ngIf="hotel.image" src="http://localhost:3200/hotel/getImage/{{ hotel.image }}"
+        crossorigin="anonymous" class="round" style="height: 100%;">
         <h3>{{hotelGetId.name}}</h3>
         <p>{{hotelGetId.address}}</p>
         <p>{{hotelGetId.phone}}</p>
@@ -32,6 +36,8 @@
             <a href="">  <button (click)="deleteHotel(hotelGetId._id)" class="primary ghost m-2" >
                 Delete
              </button> </a>
+             <button (click)="getHotel()" class="primary ghost m-2"data-bs-toggle="modal"
+                data-bs-target="#modalUploadImage">Cambiar foto</button>
            
         </div> 
  
@@ -41,6 +47,7 @@
                 <button class="btn btn-outline-danger btn-icon-split"  [routerLink]="['/service/' + hotelGetId._id]">Services</button>
                 <button class="btn btn-outline-success btn-icon-split m-2"  [routerLink]="['/event/' + hotelGetId._id]">Events</button>
                 <button class="btn btn-outline-primary btn-icon-split m-2" [routerLink]="['/rooms/' + hotelGetId._id]">Rooms</button>
+                
             </div>
         </div> 
     </div>  
@@ -48,7 +55,28 @@
    
 </body>
 
-
+<!-- Modal upload image-->
+<div class="modal fade" id="modalUploadImage" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cambiar imagen</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3">
+                  <label for="image" class="form-label">Imagen: </label>
+                  <input (change)="filesChange($event)" type="file" class="form-control" id="image">
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
+              <button (click)="uploadImage()" type="button" data-bs-dismiss="modal"
+                  class="btn btn-primary">Guardar</button>
+          </div>
+      </div>
+  </div>
+</div>
 
     <!-- Off canvas update-->
 

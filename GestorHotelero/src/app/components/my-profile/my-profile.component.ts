@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
+import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -17,6 +18,7 @@ export class MyProfileComponent implements OnInit {
   role:any;
   username:any;
   name:any;
+  filesToUpload:any;
 
   
   uri:any;
@@ -24,7 +26,8 @@ export class MyProfileComponent implements OnInit {
 
   constructor(
     private userRest: UserRestService,
-    private router: Router
+    private router: Router,
+    private uploadImageRest: UploadImageService
     ) { 
       this.token = this.userRest.getToken();
     }
@@ -99,6 +102,33 @@ export class MyProfileComponent implements OnInit {
         });
       },
     });
+  }
+
+  filesChange(inputFile:any){
+    this.filesToUpload = <Array<File>>inputFile.target.files;
+    console.log(this.filesToUpload);
+  }
+
+  uploadImage(){
+    this.uploadImageRest.requestFiles(this.identity._id, this.filesToUpload, 'image')
+    .then((res:any)=>{
+      let resClear = JSON.parse(res);
+      if(!resClear.error){
+        Swal.fire({
+          icon: 'success',
+          title: resClear.message,
+        });
+        localStorage.setItem('identity', JSON.stringify(resClear.updateUser));
+        this.myProfile();
+        this.userImage = this.userRest.getIdentity().image;
+        this.uri = environment.baseUrl + 'user/getImage/' + this.userImage;
+      }else{
+        Swal.fire({
+          icon: 'success',
+          title: res,
+        });
+      }
+    })
   }
 
   deleteProfile() {

@@ -23,6 +23,8 @@ export class MyHotelComponent implements OnInit {
   hoteles: any;
   hotel: HotelModel;
 
+  filesToUpload: any;
+
   uri:any;
   userImage:any;
 
@@ -32,7 +34,7 @@ export class MyHotelComponent implements OnInit {
     private router: Router
   ) { 
     this.token = this.userRest.getToken();
-    this.hotel = new HotelModel('', '', '', '',  0, '');
+    this.hotel = new HotelModel('', '', '', '', '',  0, '');
   }
 
   hotelGetId: any;
@@ -144,6 +146,31 @@ export class MyHotelComponent implements OnInit {
         timer: 3000
       })
     })
+  }
+
+  filesChange(inputFile: any) {
+    this.filesToUpload = <Array<File>>inputFile.target.files;
+    console.log(this.filesToUpload);
+  }
+
+  uploadImage() {
+    this.hotelRest
+      .requestFiles(this.hotelGetId._id, this.filesToUpload, 'image')
+      .then((res: any) => {
+        let resClear = JSON.parse(res);
+        if (!resClear.error) {
+          Swal.fire({
+            icon: 'success',
+            title: resClear.message,
+          });
+          this.myHotel();
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: res,
+          });
+        }
+      });
   }
 
 }
