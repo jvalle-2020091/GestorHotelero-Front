@@ -49,11 +49,8 @@ export class UsersComponent implements OnInit {
 
   getUsers(){
     this.userAdminRest.getUsers().subscribe({
-      next: (res: any) => {
+      next: (res: any) => 
         this.users = res.usersExist,
-        console.log(this.users);
-        
-      },
       error: (err) => {
         console.log(err);
         

@@ -17,14 +17,14 @@
 
         <span class="pro">HOTEL</span>
 
-        <img *ngIf="hotel.hasOwnProperty('image') == false"
+        <img *ngIf="hotelGetId.hasOwnProperty('image') == false"
         src="https://img.unocero.com/2020/01/trivago-miente-usuarios-1024x576.jpg" class="round">
-    <img *ngIf="hotel.image" src="http://localhost:3200/hotel/getImage/{{ hotel.image }}"
+    <img *ngIf="hotelGetId.image" src="http://localhost:3200/hotel/getImage/{{ hotelGetId.image }}"
         crossorigin="anonymous" class="round" style="height: 100%;">
         <h3>{{hotelGetId.name}}</h3>
         <p>{{hotelGetId.address}}</p>
         <p>{{hotelGetId.phone}}</p>
-        <p>{{ hotelGetId.timesRequest}}</p>
+        <p>timesRequest{{ hotelGetId.timesRequest}}</p>
         <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p> 
 
         

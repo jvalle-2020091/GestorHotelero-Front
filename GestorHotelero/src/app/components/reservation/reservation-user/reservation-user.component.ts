@@ -142,6 +142,31 @@ export class ReservationUserComponent implements OnInit {
     })
   }
 
+  cancelReservation(idReservation: string){
+    this.reservationRest.cancelReservation(this.idHotel,  idReservation ).subscribe({  
+      next: (res: any)=>{
+        console.log(this.reservationGetId._id),
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          position: 'center',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+        this.myReservations();
+      },
+      error: (err: any) => {
+        Swal.fire({
+          icon: 'error',
+          title: err.error.message || err.error,
+          confirmButtonColor: '#E74C3C'
+        });
+      },
+    })
+
+  }
+
  
 
 }

@@ -41,6 +41,7 @@ export class MyHotelComponent implements OnInit {
 
   ngOnInit(): void {
     this.myHotel();
+  
     this.token = this.userRest.getToken();
     this.identity = this.userRest.getIdentity();
     this.role = this.userRest.getIdentity().role;

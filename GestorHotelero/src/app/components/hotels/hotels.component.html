@@ -12,15 +12,17 @@
 
 
 <h1>Hotels</h1>
-<div class="wrapper" *ngIf="hoteles">
+<div class="wrapper" >
 <div class="card" *ngFor="let hotel of hoteles">
-    <img src="https://www.intermundial.es/blog/wp-content/uploads/2011/09/problemas-hotel.jpg" class="card-img-top" alt="...">
+    <img *ngIf="!hotel.image" 
+    src="https://www.intermundial.es/blog/wp-content/uploads/2011/09/problemas-hotel.jpg" class="card-img-top" alt="...">
+    <img *ngIf="hotel.image" src="http://localhost:3200/hotel/getImage/{{ hotel.image }}" class="card-img-top" alt="...">
     <br>
 	<h3 class="card-title">{{hotel.name}}</h3>
     <h6 class="card-subtitle mb-2 text-muted">Ubication: {{hotel.address}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Phone: {{hotel.phone}}</h6>
     <h6 class="card-subtitle mb-2 text-muted">Times Request: {{hotel.timesRequest}}</h6>
-    <h6  *ngIf="token && identity.role === 'ADMIN-APP'" class="card-subtitle mb-2 text-muted">Admin: {{hotel.adminHotel.username}}</h6>
+    <h6  *ngIf="token && identity.role === 'ADMIN-APP'" class="card-subtitle mb-2 text-muted">Admin: {{hotel.adminHotel.name}} </h6>
     <div  *ngIf="token && identity.role === 'CLIENT'"> <button [routerLink]="['/event/' + hotel._id]"  class="card-btn2">Events</button> </div>
     <br>
     <div  *ngIf="token && identity.role === 'CLIENT'"> <button  [routerLink]="['/reservation/' + hotel._id]" class="card-btn">Reservation</button> </div>

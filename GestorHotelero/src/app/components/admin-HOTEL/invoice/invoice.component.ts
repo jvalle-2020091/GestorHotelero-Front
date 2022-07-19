@@ -15,6 +15,7 @@ export class InvoiceComponent implements OnInit {
   invoice: InvoiceModel;
   idReser: any;
   invoiceId: any;
+  reservation: any;
 
 
   constructor(
@@ -38,6 +39,7 @@ export class InvoiceComponent implements OnInit {
     this.reservationRest.getInvoice(this.idReser).subscribe({
       next: (res: any) => {
         this.invoiceId = res.invoice;
+        this.reservation = res.checkReservation;
       },
       error: (err) => {
         Swal.fire({

@@ -99,7 +99,7 @@
 
               <div class="mb-3">
                 <label for="nameTeam" class="form-label">Date Available</label>
-                <input [(ngModel)]="room.dateAvalable" name="name" type="text" class="form-control" id="nameTeam3"
+                <input [(ngModel)]="room.dateAvalable" name="name" type="date" class="form-control" id="nameTeam3"
                   aria-describedby="DateEventHelp">
               </div>
              
@@ -109,7 +109,7 @@
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
               <i class="fa fa-times-circle" aria-hidden="true"></i> Discard Save</button>
               <button (click)="saveRoom(addRoomForm)" type="submit" class="btn btn-success"
-              data-bs-dismiss="modal"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save Event
+              data-bs-dismiss="modal"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save Room
             </button>
           </div>
         </div>

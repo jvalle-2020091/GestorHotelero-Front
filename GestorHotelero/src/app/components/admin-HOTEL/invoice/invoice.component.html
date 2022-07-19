@@ -4,23 +4,22 @@
    <div class="col-md-12">
       <div class="invoice">
          <!-- begin invoice-company -->
-         <div class="invoice-company text-inverse f-w-600">
+         <div class="invoice-company text-inverse f-w-600" *ngIf="reservation">
             <span class="pull-right hidden-print">
             <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a>
             <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
             </span>
-            hotel name
+            {{reservation.hotel.name}}
          </div>
          <!-- end invoice-company -->
          <!-- begin invoice-header -->
-         <div class="invoice-header">
+         <div class="invoice-header"  *ngIf="reservation">
             <div class="invoice-from">
-               <small>from</small>
+               <small>Address</small>
                <address class="m-t-5 m-b-5">
-                  <strong class="text-inverse">Twitter, Inc.</strong><br>
-                  Street Address<br>
-                  City, Zip Code<br>
-                  Phone: (123) 456-7890<br>
+                  <strong class="text-inverse"> {{reservation.hotel.address}}</strong><br>
+
+                  Phone: (502) {{reservation.hotel.phone}}<br>
 
                </address>
             </div>
@@ -29,13 +28,13 @@
                   <strong class="text-inverse">Name: {{invoiceId.name}}</strong><br>
                   NIT: {{invoiceId.NIT}}<br>
                   Start Date: {{invoiceId.reservations.startDate}}<br>
-                  End Date: {{invoiceId.reservations.startDate}}<br>
+                  End Date: {{invoiceId.reservations.endDate}}<br>
 
                </address>
             </div>
             <div class="invoice-date" *ngIf="invoiceId">
                <small>Invoice </small>
-               <div class="date text-inverse m-t-5">Date {{invoiceId.date}}</div>
+               <div class="date text-inverse m-t-5">Date: {{invoiceId.date}}</div>
                <div class="invoice-detail">
                   Serial {{invoiceId.serial}}<br>
                   Reservation of room and services
@@ -50,6 +49,7 @@
                <table class="table table-invoice">
                   <thead>
                      <tr>
+                        <th > Name </th>
                         <th> DESCRIPTION</th>
                         <th class="text-center" width="10%">Price</th>
 
@@ -57,11 +57,16 @@
                   </thead>
                   <tbody>
                      <tr>
+
                         <td>
-                           <span class="text-inverse">Website design &amp; development</span><br>
+                           <span *ngIf="reservation" class="text-inverse">{{reservation.room.name}}</span><br>
+                           <span *ngIf="reservation" class="text-inverse">{{reservation.service.name}}</span><br>
+                        </td>
+                        <td>
+                           <span *ngIf="reservation" class="text-inverse">{{reservation.room.description}}</span><br>
                           
                         </td>
-                        <td class="text-center">$50.00</td>
+                        <td *ngIf="reservation" class="text-center">Q{{reservation.room.price}}.00</td>
  
                      </tr>
                      
@@ -80,7 +85,7 @@
                      <div class="sub-price">
                         <i class="fa fa-plus text-muted"></i>
                      </div>
-                     <div class="sub-price">
+                     <div class="sub-price" *ngIf="invoiceId">
                         <small>IVA (12%)</small>
                         <span class="text-inverse">Q{{invoiceId.reservations.IVA}}.00</span>
                      </div>

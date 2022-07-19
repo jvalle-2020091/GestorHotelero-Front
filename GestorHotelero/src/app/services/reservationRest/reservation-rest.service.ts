@@ -29,6 +29,10 @@ export class ReservationRestService {
     return this.http.get(environment.baseUrl + 'reservation/myReservations/' + idHotel, {headers: this.httpOptions});
   }
 
+  reservationsByHotel(idHotel: string){
+    return this.http.get(environment.baseUrl + 'reservation/getReservationsByHotel/' + idHotel, {headers: this.httpOptions});
+  }
+
   getReservation(idHotel: string, id: string){
     return this.http.get(environment.baseUrl + 'reservation/getReservation/' + idHotel + '/' + id, {headers: this.httpOptions});
   }
@@ -39,6 +43,10 @@ export class ReservationRestService {
 
   getInvoice(idReser: string){
     return this.http.get(environment.baseUrl + 'invoice/getInvoice/' + idReser,{headers: this.httpOptions})
+  }
+
+  cancelReservation(idHotel: string, idReservation: string){
+    return this.http.delete(environment.baseUrl + 'reservation/deleteReservation/' + idHotel + '/' + idReservation, {headers: this.httpOptions})
   }
 }
 

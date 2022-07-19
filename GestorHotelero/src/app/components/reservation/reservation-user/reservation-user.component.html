@@ -35,7 +35,7 @@
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{service.name}}</td>
                 <td>{{service.description}}</td>
-                <td>{{service.price}}</td>
+                <td>Q{{service.price}}.00</td>
               </tr>
             </tbody>
           </table>
@@ -71,7 +71,7 @@
                 <td>{{room.name}}</td>
                 <td>{{room.description}}</td>
                 <td>{{room.available}}</td>
-                <td>{{room.price}}</td>
+                <td>Q{{room.price}}.00</td>
               </tr>
             </tbody>
           </table>
@@ -142,7 +142,7 @@
 </div>
 
 
-<!-- offcanvas update Reservation -->
+<!-- offcanvas add Reservation -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="updateTask" aria-labelledby="offcanvasUpdateLabel">
   <div class="offcanvas-header">
@@ -175,7 +175,7 @@
 
       <!-- Muestra los servicios que desea en la reservación -->
       <label class="form-label">Service | Type | Price</label>
-      <select [(ngModel)]="reservation.service" name="service" class="form-select" aria-label="Update task">
+      <select multiple [(ngModel)]="reservation.service" name="service" class="form-select" aria-label="Update task">
         <option selected>Open this select Service</option>
         <option *ngFor="let service of services" value="{{service._id}}">{{service.name}} | {{service.description}} |
           Q{{service.price}}</option>
@@ -226,7 +226,7 @@
 
           </button>
 
-          <button class=" btn btn-outline-danger m-2">
+          <button class=" btn btn-outline-danger m-2" (click)="cancelReservation(reservation._id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
               viewBox="0 0 16 16">
               <path

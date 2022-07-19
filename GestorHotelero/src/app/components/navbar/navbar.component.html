@@ -26,7 +26,7 @@
             <a *ngIf="token && identity.role === 'ADMIN-APP' || identity.role === 'ADMIN-HOTEL' "  class="nav-link" routerLink="/users" >Users</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/report" >Report</a>
+            <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/reservationAdminApp" >Report</a>
           </li>
           <li class="nav-item">
             <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/Statistics" >Statistics</a>

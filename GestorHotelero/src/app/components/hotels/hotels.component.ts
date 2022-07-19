@@ -20,7 +20,7 @@ export class HotelsComponent implements OnInit {
   hotelUpdate: any;
 
   usersAdmin:any;
-
+  filesToUpload: any;
 
   hoteles: any;
   hotel: HotelModel;
@@ -32,6 +32,7 @@ export class HotelsComponent implements OnInit {
   ) { 
     this.hotel = new HotelModel('', '', '', '', '',  0, '');
   }
+  hotelGetId: any;
 
   ngOnInit(): void {
     this.getHotels();
@@ -46,9 +47,7 @@ export class HotelsComponent implements OnInit {
   {
     this.hoteles = [];    
     this.hotelRest.getHotels().subscribe({
-      next: (res: any) => { this.hoteles = res.hotels,
-        console.log(res);
-      },
+      next: (res: any) =>  this.hoteles = res.hotels,
         error: (err) => console.log(err)
     });
   }
@@ -64,11 +63,8 @@ export class HotelsComponent implements OnInit {
 
   getUsers(){
     this.userAdminRest.getUsers().subscribe({
-      next: (res: any) => {
+      next: (res: any) => 
         this.users = res.usersExist,
-        console.log(this.users);
-        
-      },
       error: (err) => {
         console.log(err);
         
@@ -79,11 +75,9 @@ export class HotelsComponent implements OnInit {
   
   getAdminsHotel(){
     this.userAdminRest.getAdminsHotel().subscribe({
-      next: (res: any) => {
+      next: (res: any) => 
         this.usersAdmin = res.usersExist,
-        console.log(this.users);
-        
-      },
+       
       error: (err) => {
         console.log(err);
         
@@ -119,7 +113,6 @@ export class HotelsComponent implements OnInit {
     this.hotelRest.updateHotelByAdmin( this.hotelUpdate._id, this.hotelUpdate).subscribe({
       next: (res:any)=> {
         Swal.fire ({ icon: 'success', title: res.message,});
-        console.log(this.hotelId);
         this.getHotels();
       },
       error: (err)=> alert(err.error.message || err.error)
@@ -145,6 +138,30 @@ export class HotelsComponent implements OnInit {
         timer: 3000
       })
     })
+  }
+
+  filesChange(inputFile: any) {
+    this.filesToUpload = <Array<File>>inputFile.target.files;
+  }
+
+  uploadImage() {
+    this.hotelRest
+      .requestFiles(this.hotelGetId._id, this.filesToUpload, 'image')
+      .then((res: any) => {
+        let resClear = JSON.parse(res);
+        if (!resClear.error) {
+          Swal.fire({
+            icon: 'success',
+            title: resClear.message,
+          });
+          this.getHotels();
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: res,
+          });
+        }
+      });
   }
 
 }
