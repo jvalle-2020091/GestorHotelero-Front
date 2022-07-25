@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class ReservationUserComponent implements OnInit {
   roomGetId: any;
+  roomGetIdAvailable: any;
   reservation: ReservationModel;
   reservations: any;
   idReser: any;
@@ -51,7 +52,7 @@ export class ReservationUserComponent implements OnInit {
 
   getRoomsAvailable(){
     this.roomRest.getRoomsAvailable(this.idHotel).subscribe({
-      next: (res:any)=> this.roomGetId = res.rooms,
+      next: (res:any)=> this.roomGetIdAvailable = res.rooms,
       error: (err)=> console.log(err.error.message)
     })
   }
@@ -82,6 +83,8 @@ export class ReservationUserComponent implements OnInit {
         });
         
         this.myReservations();
+        this.getRoomsByHotel();
+        this.getRoomsAvailable();
         addReservationFrom.reset();
       },
       error: (err: any) => {
@@ -106,8 +109,6 @@ export class ReservationUserComponent implements OnInit {
     this.reservationRest.getReservation(this.idHotel, id).subscribe({
       next: (res: any) => 
         this.reservationGetId = res.checkReservationHotel, 
-        
-   
       error: (err) => {Swal.fire({
         icon: 'error',
         title: err.error.message || err.error,
@@ -143,9 +144,8 @@ export class ReservationUserComponent implements OnInit {
   }
 
   cancelReservation(idReservation: string){
-    this.reservationRest.cancelReservation(this.idHotel,  idReservation ).subscribe({  
+    this.reservationRest.deleteReservationByAdmin(this.idHotel,  idReservation ).subscribe({  
       next: (res: any)=>{
-        console.log(this.reservationGetId._id),
         Swal.fire({
           title: res.message,
           icon: 'success',
@@ -153,8 +153,9 @@ export class ReservationUserComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
-
+        this.getRoomsAvailable()
         this.myReservations();
+        this.getRoomsByHotel();
       },
       error: (err: any) => {
         Swal.fire({
@@ -164,7 +165,6 @@ export class ReservationUserComponent implements OnInit {
         });
       },
     })
-
   }
 
  

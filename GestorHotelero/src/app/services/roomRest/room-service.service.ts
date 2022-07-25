@@ -21,9 +21,14 @@ export class RoomServiceService {
 //Cliente
 
     getRoomsByHotel(id: any){
-      return this.http.get(environment.baseUrl + 'room/getRoomsByHotel/' + id ,{headers: this.httpOptions});
+      return this.http.get(environment.baseUrl + 'room/getRoomsByHotel/' + id ,{
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
-
+  
     getRoomsAvailable(idHotel : any){
       return this.http.get(environment.baseUrl + 'room/getRoomsAvailable/' + idHotel, {headers: this.httpOptions});
     }
@@ -48,6 +53,17 @@ export class RoomServiceService {
 
     deleteRoom(idHotel:any, id: any, ){
       return this.http.delete(environment.baseUrl + 'room/deleteRoom/' + idHotel + '/' + id , {headers: this.httpOptions});
+    }
+
+    getToken() {
+      let globalToken = localStorage.getItem('token');
+      let token;
+      if (globalToken != undefined) {
+        token = globalToken;
+      } else {
+        token = '';
+      }
+      return token;
     }
 
 

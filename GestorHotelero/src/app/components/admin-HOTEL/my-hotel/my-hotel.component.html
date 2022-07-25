@@ -24,7 +24,7 @@
         <h3>{{hotelGetId.name}}</h3>
         <p>{{hotelGetId.address}}</p>
         <p>{{hotelGetId.phone}}</p>
-        <p>timesRequest{{ hotelGetId.timesRequest}}</p>
+        <p>Times Request: {{ hotelGetId.timesRequest}}</p>
         <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p> 
 
         
@@ -42,12 +42,12 @@
         </div> 
  
        <div class="skills">
-            <h6>Added</h6>
             <div  class="text-center  ms-3">
                 <button class="btn btn-outline-danger btn-icon-split"  [routerLink]="['/service/' + hotelGetId._id]">Services</button>
-                <button class="btn btn-outline-success btn-icon-split m-2"  [routerLink]="['/event/' + hotelGetId._id]">Events</button>
+                <button class="btn btn-outline-success btn-icon-split m-2"  [routerLink]="['/event/' + hotelGetId._id]">Events</button> <br>
                 <button class="btn btn-outline-primary btn-icon-split m-2" [routerLink]="['/rooms/' + hotelGetId._id]">Rooms</button>
-                
+                <button class="btn btn-outline-warning btn-icon-split m-2" [routerLink]="['/reservationAdminHotel/' + hotelGetId._id]">Reservations</button>
+
             </div>
         </div> 
     </div>  

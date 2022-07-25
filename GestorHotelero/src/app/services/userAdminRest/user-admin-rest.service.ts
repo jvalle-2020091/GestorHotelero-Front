@@ -21,9 +21,13 @@ export class UserAdminRestService {
   //FUNCIONES DE ADMINISTRADOR//
   getUsers()
   {
-    return this.http.get(environment.baseUrl + 'user/getUsers', {headers: this.httpOptions});
+    return this.http.get(environment.baseUrl + 'user/getUsers', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
   getAdminsHotel(){
     return this.http.get(environment.baseUrl + 'user/getAdminsHotel', {headers: this.httpOptions});
   }
@@ -46,6 +50,17 @@ export class UserAdminRestService {
   updateUser(id: string, params : {})
   {
     return this.http.put(environment.baseUrl + 'user/updateUserHotel/' + id , params, {headers: this.httpOptions})
+  }
+
+  getToken() {
+    let globalToken = localStorage.getItem('token');
+    let token;
+    if (globalToken != undefined) {
+      token = globalToken;
+    } else {
+      token = '';
+    }
+    return token;
   }
 
 

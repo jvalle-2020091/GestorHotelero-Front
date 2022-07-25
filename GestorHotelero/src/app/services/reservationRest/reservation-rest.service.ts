@@ -22,31 +22,67 @@ export class ReservationRestService {
   }
 
   addReservation(idHotel: string, params: {}){
-    return this.http.post(environment.baseUrl + 'reservation/addReservation/' + idHotel , params, {headers: this.httpOptions})
-  }
+    return this.http.post(environment.baseUrl + 'reservation/addReservation/' + idHotel , params,{headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    },
+  });
+}
 
   myReservations(idHotel: string){
-    return this.http.get(environment.baseUrl + 'reservation/myReservations/' + idHotel, {headers: this.httpOptions});
-  }
+    return this.http.get(environment.baseUrl + 'reservation/myReservationsByHotel/' + idHotel, {headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    },
+  });
+}
+
 
   reservationsByHotel(idHotel: string){
     return this.http.get(environment.baseUrl + 'reservation/getReservationsByHotel/' + idHotel, {headers: this.httpOptions});
   }
 
   getReservation(idHotel: string, id: string){
-    return this.http.get(environment.baseUrl + 'reservation/getReservation/' + idHotel + '/' + id, {headers: this.httpOptions});
-  }
+    return this.http.get(environment.baseUrl + 'reservation/getReservation/' + idHotel + '/' + id, {headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    },
+  });
+}
 
   addInvoice(id: string, params: {}){
-    return this.http.post(environment.baseUrl + 'invoice/addInvoice/' + id, params , {headers: this.httpOptions});
-  }
-
+    return this.http.post(environment.baseUrl + 'invoice/addInvoice/' + id, params , {headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    },
+  });
+}
   getInvoice(idReser: string){
-    return this.http.get(environment.baseUrl + 'invoice/getInvoice/' + idReser,{headers: this.httpOptions})
-  }
+    return this.http.get(environment.baseUrl + 'invoice/getInvoice/' + idReser,{headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    },
+  });
+}
 
   cancelReservation(idHotel: string, idReservation: string){
     return this.http.delete(environment.baseUrl + 'reservation/deleteReservation/' + idHotel + '/' + idReservation, {headers: this.httpOptions})
   }
+
+  deleteReservationByAdmin(idHotel: string, idReservation: string){
+    return this.http.delete(environment.baseUrl + 'reservation/deleteReservationByAdmin/' + idHotel + '/' + idReservation, {headers: this.httpOptions})
+  }
+
+  getToken() {
+    let globalToken = localStorage.getItem('token');
+    let token;
+    if (globalToken != undefined) {
+      token = globalToken;
+    } else {
+      token = '';
+    }
+    return token;
+  }
+
 }
 

@@ -118,7 +118,7 @@
 </div>
 
 <div class=" text-center m-4">
-  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-dark">
+  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-dark m-2">
     <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
       class="bi bi-calendar-check" viewBox="0 0 16 16">
       <path
@@ -130,7 +130,7 @@
 </div>
 
 <div class=" text-center m-4">
-  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalService" class="btn btn-dark">
+  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalService" class="btn btn-dark m-2">
     <svg class="text-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
       class="bi bi-calendar-check" viewBox="0 0 16 16">
       <path
@@ -156,7 +156,7 @@
       <label class="form-label">Room | Disponibility | Price</label>
       <select [(ngModel)]="reservation.room" name="room" class="form-select" aria-label="Update task">
         <option disabled value="" selected>Open this select Room</option>
-        <option *ngFor="let room of roomGetId" value="{{room._id}}">{{ room.name}} | {{room.available}} |
+        <option *ngFor="let room of roomGetIdAvailable" value="{{room._id}}">{{ room.name}} | {{room.available}} |
           Q{{room.price}}</option>
       </select>
       <!-- Selecciona la fecha en que comenzara la reservación -->
@@ -196,7 +196,7 @@
 
 
 <!-- Table de todos las reservaciones hechas-->
-<div class="text-center m-5">
+<div *ngIf="reservations" class="text-center m-5">
   <table class="table table-dark table-striped  ">
     <thead>
       <tr>
@@ -204,6 +204,7 @@
         <th scope="col">Start date</th>
         <th scope="col">End date</th>
         <th scope="col">Total</th>
+        <th scope="col">Status</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -213,18 +214,10 @@
         <td>{{reservation.startDate}}</td>
         <td>{{reservation.endDate}}</td>
         <td>{{reservation.totalPrice}}</td>
+        <td>{{reservation.status}}</td>
         <td>
 
-          <button data-bs-toggle="modal" data-bs-target="#updateEvent" class=" btn btn-outline-warning m-2 ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-bookmark-check" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-              <path
-                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-            </svg>
-
-          </button>
+      
 
           <button class=" btn btn-outline-danger m-2" (click)="cancelReservation(reservation._id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"

@@ -3,6 +3,7 @@ import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { UserAdminRestService } from 'src/app/services/userAdminRest/user-admin-rest.service';
 import {HotelRestService} from 'src/app/services/hotelRest/hotel-rest.service';
 import { HotelModel } from 'src/app/models/hotel.model';
+import { Chart, registerables } from 'chart.js';
 import Swal from 'sweetalert2';
 
 
@@ -12,12 +13,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./hotels.component.css']
 })
 export class HotelsComponent implements OnInit {
+
   token:any;
   identity:any;
   role:any;
   users:any;
   hotelId: any;
   hotelUpdate: any;
+  searchHotel: String = '';
 
   usersAdmin:any;
   filesToUpload: any;
@@ -31,6 +34,7 @@ export class HotelsComponent implements OnInit {
     private userAdminRest: UserAdminRestService
   ) { 
     this.hotel = new HotelModel('', '', '', '', '',  0, '');
+    Chart.register(...registerables);
   }
   hotelGetId: any;
 
@@ -41,12 +45,27 @@ export class HotelsComponent implements OnInit {
     this.token = this.userRest.getToken();
     this.identity = this.userRest.getIdentity();
     this.role = this.userRest.getIdentity().role;
+
+    
+    
   }
+
+
+
 
   getHotels() 
   {
     this.hoteles = [];    
     this.hotelRest.getHotels().subscribe({
+      next: (res: any) =>  this.hoteles = res.hotels,
+        error: (err) => console.log(err)
+    });
+  }
+
+  getHotelsByPopularity() 
+  {
+    this.hoteles = [];    
+    this.hotelRest.getHotelsByPopularity().subscribe({
       next: (res: any) =>  this.hoteles = res.hotels,
         error: (err) => console.log(err)
     });

@@ -17,6 +17,10 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { EventComponent } from './components/admin-HOTEL/event/event.component';
 import { MyHotelComponent } from './components/admin-HOTEL/my-hotel/my-hotel.component';
 import { InvoiceComponent } from './components/admin-HOTEL/invoice/invoice.component';
+import { UserGuard } from './guards/user.guard';
+import { AdminHotelGuard } from './guards/admin-hotel.guard';
+import { AdminAppGuard } from './guards/admin-app.guard'
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,19 +28,18 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  
-
   {path: 'hotels', component: HotelsComponent},
   {path: 'myProfile', component: MyProfileComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'reservation/:idHotel', component: ReservationUserComponent},
-  {path: 'reservationAdminHotel', component: ReservationAdminHotelComponent},
-  {path: 'reservationAdminApp', component: ReservationAdminAppComponent},
+
+  {path: 'users', canActivate:[AdminAppGuard], component: UsersComponent},
+  {path: 'reservation/:idHotel', canActivate:[UserGuard], component: ReservationUserComponent},
+  {path: 'reservationAdminHotel/:idHotel', canActivate:[AdminHotelGuard], component: ReservationAdminHotelComponent},
+  {path: 'reservationAdminApp',  canActivate:[AdminAppGuard], component: ReservationAdminAppComponent},
   {path: 'event/:idHotel', component: EventComponent},
-  {path: 'myHotel', component:  MyHotelComponent },
-  {path: 'service/:idHotel', component: ServicesComponent },
-  {path: 'rooms/:idHotel', component: RoomsComponent},
-  {path: 'invoice/:idReser', component: InvoiceComponent},
+  {path: 'myHotel', canActivate:[AdminHotelGuard], component:  MyHotelComponent },
+  {path: 'service/:idHotel', canActivate:[AdminHotelGuard], component: ServicesComponent },
+  {path: 'rooms/:idHotel', canActivate:[AdminHotelGuard], component: RoomsComponent},
+  {path: 'invoice/:idReser',  canActivate:[UserGuard], component: InvoiceComponent},
 
   {path: '**', component:NotFoundComponent}
 ];

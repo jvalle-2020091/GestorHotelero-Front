@@ -38,6 +38,16 @@ export class InvoiceComponent implements OnInit {
   getInvoice() {
     this.reservationRest.getInvoice(this.idReser).subscribe({
       next: (res: any) => {
+
+        let invoiceRes = res.checkReservation;
+        
+          for(let i = 0; i< invoiceRes.service.length; i++){
+            
+            let a = ' ';
+            let x = Object.values(invoiceRes.service[i]) 
+            invoiceRes.service[i] = a + x[2]
+         }      
+
         this.invoiceId = res.invoice;
         this.reservation = res.checkReservation;
       },

@@ -25,6 +25,8 @@ import { MyHotelComponent } from './components/admin-HOTEL/my-hotel/my-hotel.com
 import { ServicesComponent } from './components/admin-HOTEL/services/services.component';
 import { RoomsComponent } from './components/admin-HOTEL/rooms/rooms.component';
 import { InvoiceComponent } from './components/admin-HOTEL/invoice/invoice.component';
+import { HotelPipe } from './pipes/hotel.pipe';
+import { UsersPipe } from './pipes/users.pipe';
 
 
 @NgModule({
@@ -45,14 +47,16 @@ import { InvoiceComponent } from './components/admin-HOTEL/invoice/invoice.compo
     MyHotelComponent,
     ServicesComponent,
     RoomsComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    HotelPipe,
+    UsersPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, 
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+   // AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

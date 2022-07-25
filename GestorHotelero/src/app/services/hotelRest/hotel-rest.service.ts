@@ -18,7 +18,15 @@ export class HotelRestService {
   ) { }
 
   getHotels(){
-    return this.http.get(environment.baseUrl + 'hotel/getHotels', {headers: this.httpOptions})
+    return this.http.get(environment.baseUrl + 'hotel/getHotels', {headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.getToken(),
+    },
+  });
+}
+
+  getHotelsByPopularity(){
+    return this.http.get(environment.baseUrl + 'hotel/getHotelsByPopularity', {headers: this.httpOptions})
   }
 
   getHotel(id: string){
@@ -39,7 +47,22 @@ export class HotelRestService {
 
   myHotel() {
     return this.http.get(environment.baseUrl + 'hotel/myHotel', 
-      {headers: this.httpOptions});
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
+
+  getHotelsHistory() {
+    return this.http.get(environment.baseUrl + 'hotel/getHotelsHistory', 
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   saveHotel(params: {}){
@@ -79,6 +102,17 @@ export class HotelRestService {
       xhr.setRequestHeader('Authorization', this.userRest.getToken());
       xhr.send(formData);
     });
+  }
+
+  getToken() {
+    let globalToken = localStorage.getItem('token');
+    let token;
+    if (globalToken != undefined) {
+      token = globalToken;
+    } else {
+      token = '';
+    }
+    return token;
   }
 
   

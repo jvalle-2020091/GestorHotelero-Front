@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRestService } from 'src/app/services/userRest/user-rest.service';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
+import {HotelRestService} from 'src/app/services/hotelRest/hotel-rest.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -19,6 +20,7 @@ export class MyProfileComponent implements OnInit {
   username:any;
   name:any;
   filesToUpload:any;
+  hotels:any;
 
   
   uri:any;
@@ -27,7 +29,9 @@ export class MyProfileComponent implements OnInit {
   constructor(
     private userRest: UserRestService,
     private router: Router,
-    private uploadImageRest: UploadImageService
+    private uploadImageRest: UploadImageService,
+    private hotelRest: HotelRestService,
+
     ) { 
       this.token = this.userRest.getToken();
     }
@@ -147,6 +151,14 @@ export class MyProfileComponent implements OnInit {
       },
     });
     localStorage.clear();
+  }
+
+  getHotelsHistory() 
+  {    
+    this.hotelRest.getHotelsHistory().subscribe({
+      next: (res: any) =>  this.hotels = res.hotels,
+        error: (err) => console.log(err)
+    });
   }
 
 }

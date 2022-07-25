@@ -4,6 +4,8 @@
     <br>
     <div class="card-container">
         <span class="pro">{{ userGetId.role }}</span>
+        <img *ngIf="userGetId.hasOwnProperty('image') == false"
+        src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png" class="round">
         <img class="round" *ngIf="userImage" crossorigin="anonymous" src="{{ uri }}" alt="user image" />
         <h3>{{ userGetId.name }}</h3>
         <p>{{ userGetId.username}}</p>
@@ -19,6 +21,13 @@
                 Delete
              </button> </a>          
         </div>
+        <div *ngIf="token && identity.role === 'CLIENT'"  class="skills">
+          <div  class="text-center  ms-3">
+              <button (click)="getHotelsHistory()" class="btn btn-outline-warning btn-icon-split" data-bs-toggle="modal" data-bs-target="#staticBackdrop">History</button>
+        
+          </div>
+      </div> 
+
     </div>  
 
 
@@ -77,6 +86,43 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button (click)="uploadImage()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal history -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div  class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"> History</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Hotel</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let hotel of hotels; let i = index">
+            <tr>
+              <th scope="row">{{i + 1}}</th>
+              <td>{{hotel.name}}</td>
+              <td>{{hotel.address}}</td>
+              <td>{{hotel.phone}}</td>
+            </tr>
+          
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
       </div>
     </div>
   </div>
