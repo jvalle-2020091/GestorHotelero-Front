@@ -40,7 +40,7 @@
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{reservation.user.username}}</td>
                 <td>{{reservation.user.email}}</td>
-                <td>{{reservation.startDate}}/{{reservation.endDate}}</td>
+                <td>{{reservation.startDate | date: 'fullDate'}}-/-{{reservation.endDate | date: 'fullDate'}}</td>
                 <td class="text-success">{{reservation.room.name}}</td>
                 <td class="text-success">{{reservation.status}}</td>
                 <td>

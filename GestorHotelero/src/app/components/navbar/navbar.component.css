@@ -5,6 +5,20 @@ img{
 
 }
 
+.navbar-brand{
+    font-family: Copperplate, Papyrus,fantasy;
+    font-size: 30px;
+}
+
 .imgGoogle{
     border-radius: 50%;
 }
+
+.tab-title{
+    line-height: 1.2px;
+}
+
+.dropdown-item{
+    font-family: 'Trebuchet MS', sans-serif;
+}
+

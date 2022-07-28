@@ -1,114 +1,168 @@
 <app-navbar></app-navbar>
 
-<body >
-<!--  ------------------------Botón de agregar hotel si aun no tiene uno ----------->
-  <div  *ngIf="!hotelGetId"class="text-center mt-2 mb-2">
+<body>
+  <!--  ------------------------Botón de agregar hotel si aun no tiene uno ----------->
+  <div *ngIf="!hotelGetId" class="text-center mt-2 mb-2">
     <button class="btn btn-outline-success btn-icon-split m-2" data-bs-toggle="modal" data-bs-target="#addHotel">
       <span class="icon">
         <i class="fa fa-building" aria-hidden="true"></i>
       </span>
-      <span class="text">ADD HOTEL</span>
+      <span class="text">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+          class="bi bi-plus-square-fill position-relative" viewBox="0 0 16 16">
+          <path
+            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+        </svg>
+        <div class="tab-title">Add Hotel</div>
+         </span>
     </button>
   </div>
   <hr *ngIf="!hotelGetId">
-    
+
   <!-- --------------------------Mostrar su hotel si posee uno----------------------- -->
- <div *ngIf="hotelGetId" class="card-container">
+  <div *ngIf="hotelGetId" class="card-container">
 
-        <span class="pro">HOTEL</span>
+    <span class="pro">HOTEL</span>
 
-        <img *ngIf="hotelGetId.hasOwnProperty('image') == false"
-        src="https://img.unocero.com/2020/01/trivago-miente-usuarios-1024x576.jpg" class="round">
+    <img *ngIf="hotelGetId.hasOwnProperty('image') == false"
+      src="https://img.unocero.com/2020/01/trivago-miente-usuarios-1024x576.jpg" class="round">
     <img *ngIf="hotelGetId.image" src="http://localhost:3200/hotel/getImage/{{ hotelGetId.image }}"
-        crossorigin="anonymous" class="round" style="height: 100%;">
-        <h3>{{hotelGetId.name}}</h3>
-        <p>{{hotelGetId.address}}</p>
-        <p>{{hotelGetId.phone}}</p>
-        <p>Times Request: {{ hotelGetId.timesRequest}}</p>
-        <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p> 
+      crossorigin="anonymous" class="round" style="height: 100%;">
+    <h3>{{hotelGetId.name}}</h3>
+    <p>{{hotelGetId.address}}</p>
+    <p>{{hotelGetId.phone}}</p>
+    <p>Times Request: {{ hotelGetId.timesRequest}}</p>
+    <p>ADMINISTRADOR: {{ hotelGetId.adminHotel.name}}</p>
 
-        
-        <div class="buttons">
-            <button (click)="getHotel()"class="primary ghost"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
-            aria-controls="offcanvasGetUser" >
-                Update
-            </button>
-            <a href="">  <button (click)="deleteHotel(hotelGetId._id)" class="primary ghost m-2" >
-                Delete
-             </button> </a>
-             <button (click)="getHotel()" class="primary ghost m-2"data-bs-toggle="modal"
-                data-bs-target="#modalUploadImage">Cambiar foto</button>
-           
-        </div> 
- 
-       <div class="skills">
-            <div  class="text-center  ms-3">
-                <button class="btn btn-outline-danger btn-icon-split"  [routerLink]="['/service/' + hotelGetId._id]">Services</button>
-                <button class="btn btn-outline-success btn-icon-split m-2"  [routerLink]="['/event/' + hotelGetId._id]">Events</button> <br>
-                <button class="btn btn-outline-primary btn-icon-split m-2" [routerLink]="['/rooms/' + hotelGetId._id]">Rooms</button>
-                <button class="btn btn-outline-warning btn-icon-split m-2" [routerLink]="['/reservationAdminHotel/' + hotelGetId._id]">Reservations</button>
 
-            </div>
-        </div> 
-    </div>  
+    <div class="buttons">
+      <button (click)="getHotel()" class="primary ghost" data-bs-toggle="offcanvas" data-bs-target="#offcanvasGetUser"
+        aria-controls="offcanvasGetUser">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-up-square-fill position-relative" viewBox="0 0 16 16">
+          <path
+            d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z" />
+        </svg>
+        <div class="tab-title">Update</div>
 
-   
+      </button>
+      <a href=""> <button (click)="deleteHotel(hotelGetId._id)" class="primary ghost m-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-trash3-fill position-relative" viewBox="0 0 16 16">
+            <path
+              d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+          </svg>
+          <div class="tab-title">Delete</div>
+
+        </button> </a>
+      <button (click)="getHotel()" class="primary ghost m-2" data-bs-toggle="modal" data-bs-target="#modalUploadImage">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-images position-relative" viewBox="0 0 16 16">
+          <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+          <path
+            d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
+        </svg>
+        <div class="tab-title">Change photo</div>
+      </button>
+
+    </div>
+
+    <div class="skills">
+      <div class="text-center  ms-3">
+        <button class="btn btn-outline-danger btn-icon-split" [routerLink]="['/service/' + hotelGetId._id]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-umbrella-fill position-relative" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M8 0a.5.5 0 0 1 .5.5v.514C12.625 1.238 16 4.22 16 8c0 0 0 .5-.5.5-.149 0-.352-.145-.352-.145l-.004-.004-.025-.023a3.484 3.484 0 0 0-.555-.394A3.166 3.166 0 0 0 13 7.5c-.638 0-1.178.213-1.564.434a3.484 3.484 0 0 0-.555.394l-.025.023-.003.003s-.204.146-.353.146-.352-.145-.352-.145l-.004-.004-.025-.023a3.484 3.484 0 0 0-.555-.394 3.3 3.3 0 0 0-1.064-.39V13.5H8h.5v.039l-.005.083a2.958 2.958 0 0 1-.298 1.102 2.257 2.257 0 0 1-.763.88C7.06 15.851 6.587 16 6 16s-1.061-.148-1.434-.396a2.255 2.255 0 0 1-.763-.88 2.958 2.958 0 0 1-.302-1.185v-.025l-.001-.009v-.003s0-.002.5-.002h-.5V13a.5.5 0 0 1 1 0v.506l.003.044a1.958 1.958 0 0 0 .195.726c.095.191.23.367.423.495.19.127.466.229.879.229s.689-.102.879-.229c.193-.128.328-.304.424-.495a1.958 1.958 0 0 0 .197-.77V7.544a3.3 3.3 0 0 0-1.064.39 3.482 3.482 0 0 0-.58.417l-.004.004S5.65 8.5 5.5 8.5c-.149 0-.352-.145-.352-.145l-.004-.004a3.482 3.482 0 0 0-.58-.417A3.166 3.166 0 0 0 3 7.5c-.638 0-1.177.213-1.564.434a3.482 3.482 0 0 0-.58.417l-.004.004S.65 8.5.5 8.5C0 8.5 0 8 0 8c0-3.78 3.375-6.762 7.5-6.986V.5A.5.5 0 0 1 8 0z" />
+          </svg>
+          <div class="tab-title">Service</div>
+        </button>
+        <button class="btn btn-outline-success btn-icon-split m-2" [routerLink]="['/event/' + hotelGetId._id]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-calendar2-event-fill position-relative" viewBox="0 0 16 16">
+            <path
+              d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM11.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+          </svg>
+          <div class="tab-title">Events</div>
+        </button> <br>
+        <button class="btn btn-outline-primary btn-icon-split m-2" [routerLink]="['/rooms/' + hotelGetId._id]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop position-relative"
+            viewBox="0 0 16 16">
+            <path
+              d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+          </svg>
+          <div class="tab-title">Rooms</div>
+          </button>
+        <button class="btn btn-outline-warning btn-icon-split m-2"
+          [routerLink]="['/reservationAdminHotel/' + hotelGetId._id]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill position-relative"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+          </svg>
+          <div class="tab-title">Reservations</div>
+          </button>
+
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 <!-- Modal upload image-->
 <div class="modal fade" id="modalUploadImage" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Cambiar imagen</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <div class="mb-3">
-                  <label for="image" class="form-label">Imagen: </label>
-                  <input (change)="filesChange($event)" type="file" class="form-control" id="image">
-              </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
-              <button (click)="uploadImage()" type="button" data-bs-dismiss="modal"
-                  class="btn btn-primary">Guardar</button>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambiar imagen</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="image" class="form-label">Imagen: </label>
+          <input (change)="filesChange($event)" type="file" class="form-control" id="image">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
+        <button (click)="uploadImage()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
   </div>
 </div>
 
-    <!-- Off canvas update-->
+<!-- Off canvas update-->
 
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasGetUser" aria-labelledby="offcanvasLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasLabel">Update Hotel</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <form (ngSubmit)="updateHotel()" *ngIf="hotel">
-        <div class="mb-3">
-          <label class="form-label">Name</label>
-          <input [(ngModel)]="hotel.name" name="name" type="text" class="form-control" id="name">
-        </div>
-        
-        <div class="mb-3">
-          <label class="form-label"> Adrress</label>
-          <input [(ngModel)]="hotel.address" name="adrress" type="text" class="form-control" id="username">
-        </div>
-        <div class="mb-3">
-          <label class="form-label"> Phone</label>
-          <input [(ngModel)]="hotel.phone"  name="email" type="text" class="form-control" id="email">
-        </div>
-        
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-          <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button> 
-      </form>
-    </div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasGetUser" aria-labelledby="offcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">Update Hotel</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
+  <div class="offcanvas-body">
+    <form (ngSubmit)="updateHotel()" *ngIf="hotel">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input [(ngModel)]="hotel.name" name="name" type="text" class="form-control" id="name">
+      </div>
 
-    <!-- Modal Save Hotel -->
- <div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">
+      <div class="mb-3">
+        <label class="form-label"> Adrress</label>
+        <input [(ngModel)]="hotel.address" name="adrress" type="text" class="form-control" id="username">
+      </div>
+      <div class="mb-3">
+        <label class="form-label"> Phone</label>
+        <input [(ngModel)]="hotel.phone" name="phone" type="text" class="form-control" id="email">
+      </div>
+
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Save Hotel -->
+<div class="modal fade" id="addHotel" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -116,11 +170,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
-        <form #addHotelForm="ngForm"(ngSubmit)="saveHotel()">
+
+        <form #addHotelForm="ngForm" (ngSubmit)="saveHotel()">
           <div class="mb-3">
             <label for="form-label" class="form-label">Name</label>
-            <input [(ngModel)]="hotel.name" name="name" type="text" class="form-control" >
+            <input [(ngModel)]="hotel.name" name="name" type="text" class="form-control">
           </div>
           <div class="mb-3">
             <label for="form-label" class="form-label">Address</label>
@@ -130,17 +184,16 @@
             <label class="form-label">Phone</label>
             <input [(ngModel)]="hotel.phone" name="phone" type="text" class="form-control">
           </div>
-         
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button  type="submit" class="btn btn-primary" 
-              data-bs-dismiss="modal">Save changes
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes
             </button>
           </div>
         </form>
 
       </div>
-      
+
     </div>
   </div>
-</div> 
+</div>
