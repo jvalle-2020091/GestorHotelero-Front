@@ -131,6 +131,7 @@ export class ReservationUserComponent implements OnInit {
         this.myReservations();
         addInvoiceForm.reset();
         this.router.navigate(['/invoice/' + this.reservationGetId._id ]);
+       
       },
       error: (err: any) => {
         Swal.fire({
@@ -167,6 +168,8 @@ export class ReservationUserComponent implements OnInit {
     })
   }
 
- 
+  refresh(): void {
+    window.location.reload();
+  } 
 
 }

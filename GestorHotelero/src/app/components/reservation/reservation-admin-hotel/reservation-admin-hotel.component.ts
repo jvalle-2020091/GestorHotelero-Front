@@ -66,4 +66,9 @@ export class ReservationAdminHotelComponent implements OnInit {
       },
     })
   }
+
+  refresh(): void{
+    window.location.reload();
+  } 
+
 }

@@ -33,6 +33,7 @@ export class InvoiceComponent implements OnInit {
       this.idReser = idRuta.get('idReser');
     });
    this.getInvoice();
+  
   }
 
   getInvoice() {
@@ -50,6 +51,7 @@ export class InvoiceComponent implements OnInit {
 
         this.invoiceId = res.invoice;
         this.reservation = res.checkReservation;
+        
       },
       error: (err) => {
         Swal.fire({
