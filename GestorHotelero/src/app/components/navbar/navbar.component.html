@@ -65,7 +65,7 @@
               </a>
           </li>
           <li class="nav-item">
-            <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/Statistics">
+            <a *ngIf="token && identity.role === 'ADMIN-APP'"  class="nav-link" routerLink="/chart">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bar-chart-line-fill position-relative top-50 start-50 translate-middle"
                 viewBox="0 0 16 16">
                 <path
@@ -93,17 +93,11 @@
           <div class="tab-title">Register</div>
           </a>
           </li>
-          <li *ngIf="token" class="nav-item">
-            <a class="nav-link disabled" >
-                <i class="fa fa-user-o">
-                </i>
-                {{name}}
-            </a>
-        </li>
-
+         
+        <img *ngIf="token" class="round" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/e219f3d1bbf89e7fd608ccf0a7f7f143~c5_720x720.jpeg?x-expires=1659160800&x-signature=XFHl%2FOCpxeH5q8axNMwlR%2F%2FWkX8%3D" alt="user image">
+          
         <li *ngIf="token" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="round" *ngIf="userImage" crossorigin="anonymous" src="{{ uri }}" alt="user image">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
@@ -123,7 +117,8 @@
                           <path
                             d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z" />
                         </svg>
-                        Profile</a>
+                        Profile  {{name}}</a>
+                     
               </li>
           </div>
       </li>

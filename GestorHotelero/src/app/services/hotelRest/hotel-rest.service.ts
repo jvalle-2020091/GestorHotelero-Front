@@ -26,25 +26,47 @@ export class HotelRestService {
 }
 
   getHotelsByPopularity(){
-    return this.http.get(environment.baseUrl + 'hotel/getHotelsByPopularity', {headers: this.httpOptions})
+    return this.http.get(environment.baseUrl + 'hotel/getHotelsByPopularity', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   getHotel(id: string){
-    return this.http.get(environment.baseUrl + 'hotel/getHotel/' + id, {headers: this.httpOptions})
+    return this.http.get(environment.baseUrl + 'hotel/getHotel/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   saveHotelByAdmin(params: {}){
-    return this.http.post(environment.baseUrl + 'hotel/saveHotelByAdmin', params,{headers: this.httpOptions});
+    return this.http.post(environment.baseUrl + 'hotel/saveHotelByAdmin', params,{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
   updateHotelByAdmin(id:string, params:{}){
-    return this.http.put(environment.baseUrl + 'hotel/updateHotelByAdmin/' + id, params, {headers: this.httpOptions});
+    return this.http.put(environment.baseUrl + 'hotel/updateHotelByAdmin/' + id, params, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
   deleteHotelByAdmin(id:string){
-    return this.http.delete(environment.baseUrl + 'hotel/deleteHotelByAdmin/' + id, {headers: this.httpOptions});
+    return this.http.delete(environment.baseUrl + 'hotel/deleteHotelByAdmin/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
   myHotel() {
     return this.http.get(environment.baseUrl + 'hotel/myHotel', 
     {
@@ -66,15 +88,29 @@ export class HotelRestService {
   }
 
   saveHotel(params: {}){
-    return this.http.post(environment.baseUrl + 'hotel/saveHotel', params,{headers: this.httpOptions});
+    return this.http.post(environment.baseUrl + 'hotel/saveHotel', params,{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
   updateHotel(id:string, params:{}){
-    return this.http.put(environment.baseUrl + 'hotel/updateHotel/' + id, params, {headers: this.httpOptions});
+    return this.http.put(environment.baseUrl + 'hotel/updateHotel/' + id, params,{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   deleteHotel(id:string){
-    return this.http.delete(environment.baseUrl + 'hotel/deleteHotel/' + id, {headers: this.httpOptions});
+    return this.http.delete(environment.baseUrl + 'hotel/deleteHotel/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   requestFiles(hotelId: string, files: Array<File>, name: string) {

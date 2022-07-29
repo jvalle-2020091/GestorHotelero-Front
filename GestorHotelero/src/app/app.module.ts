@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgChartsModule } from 'ng2-charts';
 //import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 
@@ -27,6 +28,7 @@ import { RoomsComponent } from './components/admin-HOTEL/rooms/rooms.component';
 import { InvoiceComponent } from './components/admin-HOTEL/invoice/invoice.component';
 import { HotelPipe } from './pipes/hotel.pipe';
 import { UsersPipe } from './pipes/users.pipe';
+import { ChartComponent } from './components/admin-APP/chart/chart.component';
 
 
 @NgModule({
@@ -49,10 +51,12 @@ import { UsersPipe } from './pipes/users.pipe';
     RoomsComponent,
     InvoiceComponent,
     HotelPipe,
-    UsersPipe
+    UsersPipe,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
+    NgChartsModule,
     AppRoutingModule,
     FormsModule, 
     HttpClientModule,

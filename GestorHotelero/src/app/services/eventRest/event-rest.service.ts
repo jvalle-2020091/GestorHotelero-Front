@@ -27,27 +27,63 @@ export class EventAdminRestService
   //FUNCIONES DE ADMINISTRADOR//
   getEvents(idHotel: string)
   {
-    return this.http.get(environment.baseUrl + 'event/getEvents/' + idHotel, {headers: this.httpOptions});
+    return this.http.get(environment.baseUrl + 'event/getEvents/' + idHotel,{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   getEvent(idHotel: string, id : string)
   {
-    return this.http.get(environment.baseUrl + 'event/getEvent/' + idHotel + '/' + id, {headers : this.httpOptions});
+    return this.http.get(environment.baseUrl + 'event/getEvent/' + idHotel + '/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   addEvent(id : string, params : {})
   {
-    return this.http.post(environment.baseUrl + 'event/addEvent/' + id, params, {headers: this.httpOptions});
+    return this.http.post(environment.baseUrl + 'event/addEvent/' + id, params, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   deleteEvent(idHotel: string, id : string)
   {
-    return this.http.delete(environment.baseUrl + 'event/deleteEvent/' + idHotel + '/' + id, {headers: this.httpOptions});
+    return this.http.delete(environment.baseUrl + 'event/deleteEvent/' + idHotel + '/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
+  
   updateEvent( params : {}, idHotel: string, id: string)
   {
-    return this.http.put(environment.baseUrl + 'event/updateEvent/' + idHotel + '/' + id, params, {headers: this.httpOptions})
+    return this.http.put(environment.baseUrl + 'event/updateEvent/' + idHotel + '/' + id, params, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
+
+  getToken() {
+    let globalToken = localStorage.getItem('token');
+    let token;
+    if (globalToken != undefined) {
+      token = globalToken;
+    } else {
+      token = '';
+    }
+    return token;
   }
 
 }

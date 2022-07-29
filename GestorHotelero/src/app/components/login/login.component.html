@@ -19,7 +19,7 @@
                 </div>
                 <div class="row">
                     <p class="col-12 text-center description">
-                        Bienvenido, nos da gusto tenerte <br/> de nuevo aquí
+                        Welcome, we are glad to have you <br/> here again
                     </p>
                 </div>
                 <div class="row mt-5">                    
@@ -35,29 +35,29 @@
         <section class="col-md-6" id="panel-right">
             <div class="container">
                 <div class="row mb-5">
-                    <h2 class="col-12 text-center">Iniciar sesión</h2>
+                    <h2 class="col-12 text-center">Log in</h2>
                 </div>
                 <div class="row">                    
                     <form  #loginForm="ngForm" (ngSubmit)="login()"  class="col-12 col-md-8 offset-md-2">
 
                         <div class="form-group">
-                            <input  [(ngModel)]="user.username" #username="ngModel" type="text" class="form-control" name="name" id="username" placeholder="Correo electrónico" required>
+                            <input  [(ngModel)]="user.username" #username="ngModel" type="text" class="form-control" name="name" id="username" placeholder="Username" required>
                         </div>
 
                         <div class="form-group">
-                            <input [(ngModel)]="user.password" #password="ngModel" type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                            <input [(ngModel)]="user.password" #password="ngModel" type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                         </div>
 
                         <div class="form-group text-center pt-4">
                             <button [disabled]="!loginForm.form.valid" type="submit"
-                                    class="btn btn-primary btn-lg">Iniciar sesión</button>
+                                    class="btn btn-primary btn-lg">Login</button>
                         </div>
                     </form>
                 </div>
                 <div class="row mt-5">
                     <div class="col-12 links text-center">
                         <div>
-                            <a routerLink="/register">Crear cuenta</a>
+                            <a routerLink="/register">Create account</a>
                         </div>                        
                     </div>
                 </div>

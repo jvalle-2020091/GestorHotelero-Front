@@ -91,7 +91,18 @@ export class UsersComponent implements OnInit {
       })
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: string){
+    Swal.fire({
+      title: 'Are you sure to remove the user?',
+      text: 'This action cannot be reversed!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Yes, I want to delete it',
+      cancelButtonText: 'Cancell',
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.userAdminRest.deleteUser(id).subscribe({
           next: (res: any) => {
             Swal.fire({
@@ -103,14 +114,17 @@ export class UsersComponent implements OnInit {
             });
             this.getUsers();
           },
-          error: (err) => Swal.fire({
+          error: (err) =>{ Swal.fire({
             title: err.error.message,
             icon: 'error',
             position: 'center',
             timer: 3000
-          })
-        })
-      }
+          });
+        },
+      });
+    }
+  });
+}
 
   updateUser()
   {

@@ -136,22 +136,40 @@ export class MyProfileComponent implements OnInit {
   }
 
   deleteProfile() {
+    Swal.fire({
+      title: 'Are you sure you want to delete your account?',
+      showDenyButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: 'Cancel',
+      confirmButtonColor: '#DC3311',
+      denyButtonColor: '#118CDC',
+    }).then((result) => {
+      if (result.isConfirmed) {
     this.userRest.deleteProfile().subscribe({
-      next: (res: any) => {
-        Swal.fire({
-          icon: 'success',
-          title: res.message,
-        });
-      },
-      error: (err) => {
-        Swal.fire({
-          icon: 'warning',
-          title: err.error.message || err.error,
-        });
-      },
-    });
-    localStorage.clear();
-  }
+      next: (res: any) => 
+        {
+          Swal.fire({
+            icon: 'success',
+            title: res.message,
+          });
+          if(this.identity.role == 'CLIENT' || this.identity.role == 'ADMIN-HOTEL' ){              
+          localStorage.clear();
+          this.router.navigateByUrl('/home');
+          }else{
+            this.router.navigateByUrl('/myProfile')
+          }
+        },
+      error: (err) => {Swal.fire({
+        title: err.error.message,
+        icon: 'error',
+        position: 'center',
+        timer: 3000
+      });
+    },
+  });
+}
+});
+}
 
   getHotelsHistory() 
   {    

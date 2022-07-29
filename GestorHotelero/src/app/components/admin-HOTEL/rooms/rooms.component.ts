@@ -109,6 +109,17 @@ export class RoomsComponent implements OnInit {
   }
 
   deleteRoom(id: string,){
+    Swal.fire({
+      title: 'Are you sure to remove the room?',
+      text: 'This action cannot be reversed!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Yes, I want to delete it',
+      cancelButtonText: 'Cancell',
+    }).then((result) => {
+      if (result.isConfirmed) {
     this.roomRest.deleteRoom(this.idHotel, id ).subscribe({
       next: (res:any)=>{
         Swal.fire({
@@ -120,9 +131,16 @@ export class RoomsComponent implements OnInit {
         });
         this.getRooms();
       },
-      error: (err: { error: { message: any; }; })=> {Swal.fire({icon: 'warning', title: err.error.message || err.error, });
+      error: (err: { error: { message: any; }; })=> {Swal.fire({
+        title: err.error.message,
+        icon: 'error',
+        position: 'center',
+        timer: 3000
+      });
     },
-    })
-  }
+  });
+}
+});
+}
 
 }

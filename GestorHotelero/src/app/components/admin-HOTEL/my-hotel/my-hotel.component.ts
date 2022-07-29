@@ -129,6 +129,17 @@ export class MyHotelComponent implements OnInit {
   }
 
   deleteHotel(id:string){
+    Swal.fire({
+      title: 'Are you sure to remove the hotel?',
+      text: 'This action cannot be reversed!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Yes, I want to delete it',
+      cancelButtonText: 'Cancell',
+    }).then((result) => {
+      if (result.isConfirmed) {
     this.hotelRest.deleteHotel(id).subscribe({
       next: (res:any)=> {
         Swal.fire({
@@ -140,14 +151,17 @@ export class MyHotelComponent implements OnInit {
         });
         this.myHotel();
       },
-      error: (err)=> Swal.fire({
+      error: (err)=> {Swal.fire({
         title: err.error.message,
         icon: 'error',
         position: 'center',
         timer: 3000
-      })
-    })
-  }
+      });
+    },
+  });
+}
+});
+}
 
   filesChange(inputFile: any) {
     this.filesToUpload = <Array<File>>inputFile.target.files;

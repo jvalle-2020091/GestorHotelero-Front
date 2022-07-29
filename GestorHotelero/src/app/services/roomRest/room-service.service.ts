@@ -30,29 +30,59 @@ export class RoomServiceService {
     }
   
     getRoomsAvailable(idHotel : any){
-      return this.http.get(environment.baseUrl + 'room/getRoomsAvailable/' + idHotel, {headers: this.httpOptions});
+      return this.http.get(environment.baseUrl + 'room/getRoomsAvailable/' + idHotel,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
 
     getRooms(idHotel: any){
-      return this.http.get(environment.baseUrl + 'room/getRooms/' + idHotel, {headers: this.httpOptions});
+      return this.http.get(environment.baseUrl + 'room/getRooms/' + idHotel,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
 
     getRoom(idHotel: any, id: any){
-      return this.http.get(environment.baseUrl + 'room/getRoom/' + idHotel + '/' + id, {headers: this.httpOptions});
+      return this.http.get(environment.baseUrl + 'room/getRoom/' + idHotel + '/' + id,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
   
   //Funciones ADMIN / HOTEL
   
     saveRoom(id: string, params: {}, ){
-      return this.http.post(environment.baseUrl + 'room/saveRoom/' + id,  params, {headers: this.httpOptions});
+      return this.http.post(environment.baseUrl + 'room/saveRoom/' + id,  params,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
 
     updateRoom(params: {},  idHotel:any, id: any){
-      return this.http.put(environment.baseUrl + 'room/updateRoom/' + idHotel + '/' + id, params, {headers: this.httpOptions});
+      return this.http.put(environment.baseUrl + 'room/updateRoom/' + idHotel + '/' + id, params,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
 
     deleteRoom(idHotel:any, id: any, ){
-      return this.http.delete(environment.baseUrl + 'room/deleteRoom/' + idHotel + '/' + id , {headers: this.httpOptions});
+      return this.http.delete(environment.baseUrl + 'room/deleteRoom/' + idHotel + '/' + id ,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getToken(),
+        },
+      });
     }
 
     getToken() {

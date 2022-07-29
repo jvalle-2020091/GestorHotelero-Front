@@ -18,7 +18,12 @@ export class ReservationRestService {
   ) { }
 
   getHotels() {
-    return this.http.get(environment.baseUrl + 'hotel/getHotels', { headers: this.httpOptions });
+    return this.http.get(environment.baseUrl + 'hotel/getHotels',  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   addReservation(idHotel: string, params: {}){
@@ -39,7 +44,12 @@ export class ReservationRestService {
 
 
   reservationsByHotel(idHotel: string){
-    return this.http.get(environment.baseUrl + 'reservation/getReservationsByHotel/' + idHotel, {headers: this.httpOptions});
+    return this.http.get(environment.baseUrl + 'reservation/getReservationsByHotel/' + idHotel,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   getReservation(idHotel: string, id: string){
@@ -66,11 +76,21 @@ export class ReservationRestService {
 }
 
   cancelReservation(idHotel: string, idReservation: string){
-    return this.http.delete(environment.baseUrl + 'reservation/deleteReservation/' + idHotel + '/' + idReservation, {headers: this.httpOptions})
+    return this.http.delete(environment.baseUrl + 'reservation/deleteReservation/' + idHotel + '/' + idReservation,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   deleteReservationByAdmin(idHotel: string, idReservation: string){
-    return this.http.delete(environment.baseUrl + 'reservation/deleteReservationByAdmin/' + idHotel + '/' + idReservation, {headers: this.httpOptions})
+    return this.http.delete(environment.baseUrl + 'reservation/deleteReservationByAdmin/' + idHotel + '/' + idReservation,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   getToken() {

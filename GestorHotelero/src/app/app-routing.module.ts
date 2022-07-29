@@ -10,6 +10,7 @@ import { ReservationAdminHotelComponent } from './components/reservation/reserva
 import { ReservationAdminAppComponent } from './components/reservation/reservation-admin-app/reservation-admin-app.component';
 import { ServicesComponent } from './components/admin-HOTEL/services/services.component';
 import { RoomsComponent } from './components/admin-HOTEL/rooms/rooms.component';
+import { ChartComponent } from './components/admin-APP/chart/chart.component'
 
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'service/:idHotel', canActivate:[AdminHotelGuard], component: ServicesComponent },
   {path: 'rooms/:idHotel', canActivate:[AdminHotelGuard], component: RoomsComponent},
   {path: 'invoice/:idReser',  canActivate:[UserGuard], component: InvoiceComponent},
+  {path: 'chart', canActivate:[AdminAppGuard], component: ChartComponent},
 
   {path: '**', component:NotFoundComponent}
 ];

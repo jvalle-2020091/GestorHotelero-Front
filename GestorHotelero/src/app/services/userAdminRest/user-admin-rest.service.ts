@@ -29,27 +29,51 @@ export class UserAdminRestService {
     });
   }
   getAdminsHotel(){
-    return this.http.get(environment.baseUrl + 'user/getAdminsHotel', {headers: this.httpOptions});
+    return this.http.get(environment.baseUrl + 'user/getAdminsHotel',  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   getUser(id : string)
   {
-    return this.http.get(environment.baseUrl + 'user/getUser/' + id, {headers : this.httpOptions});
+    return this.http.get(environment.baseUrl + 'user/getUser/' + id,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
-
   saveUser(params : {})
   {
-    return this.http.post(environment.baseUrl + 'user/saveUserHotel', params, {headers: this.httpOptions});
+    return this.http.post(environment.baseUrl + 'user/saveUserHotel', params, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   deleteUser(id : string)
   {
-    return this.http.delete(environment.baseUrl + 'user/deleteUserHotel/' + id, {headers: this.httpOptions});
+    return this.http.delete(environment.baseUrl + 'user/deleteUserHotel/' + id,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   updateUser(id: string, params : {})
   {
-    return this.http.put(environment.baseUrl + 'user/updateUserHotel/' + id , params, {headers: this.httpOptions})
+    return this.http.put(environment.baseUrl + 'user/updateUserHotel/' + id , params,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
   }
 
   getToken() {
