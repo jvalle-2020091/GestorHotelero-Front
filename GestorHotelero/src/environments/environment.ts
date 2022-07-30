@@ -1,15 +1,15 @@
 export const environment = {
   production: false,
-  baseUrl: 'https://gestor-hotelero-desploy.herokuapp.com/'/*, 
-   firebaseConfig : {
-    apiKey: "AIzaSyAY9J45UIaUVIZTaHKk3f0BrIBfD2HB5I0",
-    authDomain: "gestorhotelero-2c780.firebaseapp.com",
-    projectId: "gestorhotelero-2c780",
-    storageBucket: "gestorhotelero-2c780.appspot.com",
-    messagingSenderId: "287274901257",
-    appId: "1:287274901257:web:8564704c068af6076a7dd8",
-    measurementId: "G-38SH3XP4C9"
-  }*/
+  baseUrl: 'https://gestor-hotelero-desploy.herokuapp.com/', 
+ firebaseConfig : {
+  apiKey: "AIzaSyAQFyl3BpnZzvw8edDdpsZSjmuREXxq7WA",
+  authDomain: "hotelerogestor.firebaseapp.com",
+  projectId: "hotelerogestor",
+  storageBucket: "hotelerogestor.appspot.com",
+  messagingSenderId: "910706125118",
+  appId: "1:910706125118:web:34621269c6747f74d4a46f"
+}
+
 };
 
 /*
